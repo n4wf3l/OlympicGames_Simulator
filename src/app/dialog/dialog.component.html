@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>Add Player Form</h1>
+<div mat-dialog-content style="display: flex; flex-direction: column">
+  <form [formGroup]="playerForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Player Name</mat-label>
+      <input formControlName="playerName" matInput placeholder="Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Player Category</mat-label>
+      <mat-select formControlName="category" placeholder="Category">
+        <mat-option value="RSC Anderlecht">RSC Anderlecht</mat-option>
+        <mat-option value="Standard Luik">Standard Luik</mat-option>
+        <mat-option value="Union Sint-Gillis">Union Sint-Gillis</mat-option>
+        <mat-option value="Club Brugge">Club Brugge</mat-option>
+        <mat-option value="KRC Genk">KRC Genk</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Geboortedatum</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <label for=""><h1>Positie</h1></label>
+    <mat-radio-group
+      formControlName="position"
+      class="example-radio-group"
+      style="display: flex; flex-direction: column"
+    >
+      <mat-radio-button
+        class="example-radio-button"
+        *ngFor="let position of positionList"
+        [value]="position"
+      >
+        {{ position }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input
+        formControlName="price"
+        matInput
+        type="number"
+        placeholder="Name"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Comment</mat-label>
+      <textarea formControlName="comment" matInput></textarea>
+      <input matInput placeholder="Name" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button
+    style="margin-left: 8px"
+    mat-raised-button
+    color="primary"
+    (click)="addPlayer()"
+  >
+    Save
+  </button>
+</div>
