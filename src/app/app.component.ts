@@ -70,6 +70,18 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
+  deletePlayer(id: number) {
+    this.api.deletePlayer(id).subscribe({
+      next: (res) => {
+        alert('Player deleted successfully.');
+        this.getAllPlayers();
+      },
+      error: () => {
+        alert('Error while deleting player.');
+      },
+    });
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

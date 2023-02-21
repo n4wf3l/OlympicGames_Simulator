@@ -18,6 +18,6 @@ export class ApiService {
     return this.http.put<any>('http://localhost:3000/playerList/' + id, data);
   }
   deletePlayer(id: number) {
-    return this.http.delete<any>('http://localhost:3000/playerList' + id);
+    return this.http.delete<any>('http://localhost:3000/playerList/' + id);
   }
 }
