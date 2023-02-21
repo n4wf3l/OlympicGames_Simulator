@@ -4,6 +4,11 @@
 
 mat-form-field {
   width: 100%;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
 }
 
 .example-radio-group {
@@ -14,4 +19,9 @@ mat-form-field {
 
 .example-radio-button {
   margin: 5px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }

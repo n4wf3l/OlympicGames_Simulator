@@ -50,7 +50,6 @@
     <mat-form-field appearance="outline">
       <mat-label>Comment</mat-label>
       <textarea formControlName="comment" matInput></textarea>
-      <input matInput placeholder="Name" />
     </mat-form-field>
   </form>
 </div>
@@ -62,6 +61,6 @@
     color="primary"
     (click)="addPlayer()"
   >
-    Save
+    {{ actionBtn }}
   </button>
 </div>
