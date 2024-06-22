@@ -1,0 +1,7 @@
+<h2>Quarter Finals</h2>
+<div *ngFor="let match of ['Match 1', 'Match 2', 'Match 3', 'Match 4']">
+  <label>{{ match }}</label>
+  <input type="number" placeholder="Team 1 Score" #team1Score>
+  <input type="number" placeholder="Team 2 Score" #team2Score>
+  <button (click)="submitMatchResult(match, team1Score.value, team2Score.value)">Submit</button>
+</div>

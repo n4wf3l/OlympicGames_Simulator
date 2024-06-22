@@ -1,0 +1,14 @@
+<div *ngFor="let group of groups">
+  <h2>{{ group.name }}</h2>
+  <div *ngFor="let team1 of group.teams; let i = index">
+    <ng-container *ngFor="let team2 of group.teams; let j = index">
+      <div *ngIf="i < j">
+        <label>{{ team1 }} vs {{ team2 }}</label>
+        <input type="number" placeholder="Score {{ team1 }}" #team1Score>
+        <input type="number" placeholder="Score {{ team2 }}" #team2Score>
+        <button
+          (click)="submitMatchResult(group.name, team1 + ' vs ' + team2, toNumber(team1Score.value), toNumber(team2Score.value))">Submit</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

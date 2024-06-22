@@ -1,0 +1,5 @@
+<h2>Finals</h2>
+<label>Final Match</label>
+<input type="number" placeholder="Team 1 Score" #team1Score>
+<input type="number" placeholder="Team 2 Score" #team2Score>
+<button (click)="submitMatchResult('Final', team1Score.value, team2Score.value)">Submit</button>

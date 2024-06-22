@@ -1,0 +1,18 @@
+<h2>Group Stage Matches</h2>
+<div *ngFor="let group of groups">
+  <h3>{{ group.name }}</h3>
+  <div *ngFor="let team1 of group.teams; let i = index">
+    <div *ngFor="let team2 of group.teams; let j = index" [hidden]="i >= j">
+      <label>{{ team1 }} vs {{ team2 }}</label>
+      <input type="number" placeholder="Score {{ team1 }}" #team1Score>
+      <input type="number" placeholder="Score {{ team2 }}" #team2Score>
+      <button
+        (click)="submitMatchResult(group.name, team1 + ' vs ' + team2, team1Score.valueAsNumber, team2Score.valueAsNumber)">Submit</button>
+    </div>
+  </div>
+</div>
+
+<h2>Results</h2>
+<div *ngFor="let match of results | keyvalue">
+  <p>{{ match.key }}: {{ match.value.team1 }} - {{ match.value.team2 }}</p>
+</div>
