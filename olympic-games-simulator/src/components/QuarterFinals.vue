@@ -1,73 +1,147 @@
 <template>
-  <div class="tournament-bracket">
-    <h2>Quarter Finals</h2>
-    <div class="bracket-row">
-      <div v-for="(match, index) in quarterFinals" :key="index" class="match">
-        <div>
-          <img :src="getFlag(match.team1)" class="flag" />
-          {{ match.team1 }} vs
-          <img :src="getFlag(match.team2)" class="flag" />
-          {{ match.team2 }}
-        </div>
-        <div>
-          {{ match.venue }} à {{ match.time }} le {{ match.date }}
-          <input v-model.number="match.team1Score" type="number" />
-          <input v-model.number="match.team2Score" type="number" />
-          <button @click="submitScore(match, 'semiFinals')">Submit</button>
-        </div>
-      </div>
-    </div>
-
-    <h2>Semi Finals</h2>
-    <div class="bracket-row">
-      <div v-for="(match, index) in semiFinals" :key="index" class="match">
-        <div>
-          <img :src="getFlag(match.team1)" class="flag" />
-          {{ match.team1 }} vs
-          <img :src="getFlag(match.team2)" class="flag" />
-          {{ match.team2 }}
-        </div>
-        <div>
-          {{ match.venue }} à {{ match.time }} le {{ match.date }}
-          <input v-model.number="match.team1Score" type="number" />
-          <input v-model.number="match.team2Score" type="number" />
-          <button @click="submitScore(match, 'finals')">Submit</button>
-        </div>
-      </div>
-    </div>
-
-    <h2>Finals</h2>
-    <div class="bracket-row">
-      <div v-for="(match, index) in finals" :key="index" class="match">
-        <div>
-          <img :src="getFlag(match.team1)" class="flag" />
-          {{ match.team1 }} vs
-          <img :src="getFlag(match.team2)" class="flag" />
-          {{ match.team2 }}
-        </div>
-        <div>
-          {{ match.venue }} à {{ match.time }} le {{ match.date }}
-          <input v-model.number="match.team1Score" type="number" />
-          <input v-model.number="match.team2Score" type="number" />
-          <button @click="submitScore(match, 'thirdPlace')">Submit</button>
+  <div class="bracket-container">
+    <div class="bracket">
+      <div class="round quarter-finals">
+        <h2>Quarter Finals</h2>
+        <div
+          v-for="(match, index) in quarterFinals"
+          :key="index"
+          class="match-container"
+        >
+          <div class="match">
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} -
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+            <div class="match-details">
+              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+            </div>
+            <div class="scores">
+              <input
+                v-model.number="match.team1Score"
+                type="number"
+                min="0"
+                class="score-input"
+              />
+              <input
+                v-model.number="match.team2Score"
+                type="number"
+                min="0"
+                class="score-input"
+              />
+            </div>
+            <button
+              @click="submitScore(match, 'semiFinals')"
+              class="submit-button"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-
-    <h2>Third Place Match</h2>
-    <div class="bracket-row">
-      <div v-for="(match, index) in thirdPlace" :key="index" class="match">
-        <div>
-          <img :src="getFlag(match.team1)" class="flag" />
-          {{ match.team1 }} vs
-          <img :src="getFlag(match.team2)" class="flag" />
-          {{ match.team2 }}
+      <div class="round semi-finals">
+        <h2>Semi Finals</h2>
+        <div
+          v-for="(match, index) in semiFinals"
+          :key="index"
+          class="match-container"
+        >
+          <div class="match">
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} -
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+            <div class="match-details">
+              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+            </div>
+            <div class="scores">
+              <input
+                v-model.number="match.team1Score"
+                type="number"
+                class="score-input"
+              />
+              <input
+                v-model.number="match.team2Score"
+                type="number"
+                class="score-input"
+              />
+            </div>
+            <button @click="submitScore(match, 'finals')" class="submit-button">
+              Submit
+            </button>
+          </div>
         </div>
-        <div>
-          {{ match.venue }} à {{ match.time }} le {{ match.date }}
-          <input v-model.number="match.team1Score" type="number" />
-          <input v-model.number="match.team2Score" type="number" />
-          <button @click="submitScore(match, 'complete')">Submit</button>
+      </div>
+      <div class="round finals">
+        <h2>Finals</h2>
+        <div
+          v-for="(match, index) in finals"
+          :key="index"
+          class="match-container"
+        >
+          <div class="match">
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} -
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+            <div class="match-details">
+              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+            </div>
+            <div class="scores">
+              <input
+                v-model.number="match.team1Score"
+                type="number"
+                class="score-input"
+              />
+              <input
+                v-model.number="match.team2Score"
+                type="number"
+                class="score-input"
+              />
+            </div>
+            <button
+              @click="submitScore(match, 'thirdPlace')"
+              class="submit-button"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="round third-place">
+        <h2>Third Place Match</h2>
+        <div
+          v-for="(match, index) in thirdPlace"
+          :key="index"
+          class="match-container"
+        >
+          <div class="match">
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} -
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+            <div class="match-details">
+              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+            </div>
+            <div class="scores">
+              <input
+                v-model.number="match.team1Score"
+                type="number"
+                class="score-input"
+              />
+              <input
+                v-model.number="match.team2Score"
+                type="number"
+                class="score-input"
+              />
+            </div>
+            <button
+              @click="submitScore(match, 'complete')"
+              class="submit-button"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -80,8 +154,8 @@ export default {
     return {
       quarterFinals: [
         {
-          team1: "Argentina",
-          team2: "USA",
+          team1: "",
+          team2: "",
           team1Score: 0,
           team2Score: 0,
           venue: "Paris",
@@ -89,8 +163,8 @@ export default {
           date: "2 août 2024",
         },
         {
-          team1: "Japan",
-          team2: "Spain",
+          team1: "",
+          team2: "",
           team1Score: 0,
           team2Score: 0,
           venue: "Lyon",
@@ -98,8 +172,8 @@ export default {
           date: "2 août 2024",
         },
         {
-          team1: "Uzbekistan",
-          team2: "Paraguay",
+          team1: "",
+          team2: "",
           team1Score: 0,
           team2Score: 0,
           venue: "Marseille",
@@ -107,8 +181,8 @@ export default {
           date: "2 août 2024",
         },
         {
-          team1: "France",
-          team2: "Morocco",
+          team1: "",
+          team2: "",
           team1Score: 0,
           team2Score: 0,
           venue: "Bordeaux",
@@ -198,12 +272,6 @@ export default {
         }
       }
     },
-    goToSemiFinals() {
-      this.$forceUpdate(); // Force rerender to update teams
-    },
-    goToFinals() {
-      this.$forceUpdate(); // Force rerender to update teams
-    },
     getFlag(team) {
       if (!team) return "";
       const teamFlagPath = team.replace(/\s+/g, "-").toLowerCase();
@@ -218,36 +286,59 @@ export default {
 </script>
 
 <style scoped>
-.tournament-bracket {
+.bracket-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 }
-.bracket-row {
+
+.bracket {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
-  margin-bottom: 20px;
 }
-.match {
-  flex: 1;
+
+.round {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
 }
+
+.match-container {
+  margin: 10px;
+}
+
+.match {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  width: 250px;
+  text-align: center;
+}
+
 .flag {
   width: 20px;
   height: auto;
   margin-right: 5px;
 }
-input[type="number"] {
-  width: 40px;
+
+.match-details {
+  margin: 5px 0;
 }
-button {
+
+.scores {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.score-input {
+  width: 30px;
+  margin: 0 5px;
+}
+
+.submit-button {
   margin-top: 5px;
 }
 </style>
