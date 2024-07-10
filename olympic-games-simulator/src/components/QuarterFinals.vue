@@ -1,5 +1,26 @@
 <template>
   <div class="bracket-container">
+    <div class="results" v-if="thirdPlaceComplete || winner">
+      <h2>Results</h2>
+      <div class="medal-container">
+        <div class="medal">
+          <h3>Gold</h3>
+          <p>{{ winner }}</p>
+          <img :src="getFlag(winner)" class="flag" />
+        </div>
+        <div class="medal">
+          <h3>Silver</h3>
+          <p>{{ runnerUp }}</p>
+          <img :src="getFlag(runnerUp)" class="flag" />
+        </div>
+        <div class="medal">
+          <h3>Bronze</h3>
+          <p>{{ thirdPlaceWinner }}</p>
+          <img :src="getFlag(thirdPlaceWinner)" class="flag" />
+        </div>
+      </div>
+    </div>
+
     <div class="bracket">
       <div class="round quarter-finals">
         <h2>Quarter Finals</h2>
@@ -39,6 +60,7 @@
           </div>
         </div>
       </div>
+
       <div class="round semi-finals">
         <h2>Semi Finals</h2>
         <div
@@ -59,55 +81,26 @@
                 v-model.number="match.team1Score"
                 type="number"
                 class="score-input"
+                :disabled="!quarterFinalsSubmitted"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
                 class="score-input"
-              />
-            </div>
-            <button @click="submitScore(match, 'finals')" class="submit-button">
-              Submit
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="round finals">
-        <h2>Finals</h2>
-        <div
-          v-for="(match, index) in finals"
-          :key="index"
-          class="match-container"
-        >
-          <div class="match">
-            <img :src="getFlag(match.team1)" class="flag" />
-            {{ match.team1 }} -
-            <img :src="getFlag(match.team2)" class="flag" />
-            {{ match.team2 }}
-            <div class="match-details">
-              {{ match.venue }} à {{ match.time }} le {{ match.date }}
-            </div>
-            <div class="scores">
-              <input
-                v-model.number="match.team1Score"
-                type="number"
-                class="score-input"
-              />
-              <input
-                v-model.number="match.team2Score"
-                type="number"
-                class="score-input"
+                :disabled="!quarterFinalsSubmitted"
               />
             </div>
             <button
-              @click="submitScore(match, 'thirdPlace')"
+              @click="submitScore(match, 'finals')"
               class="submit-button"
+              :disabled="!quarterFinalsSubmitted"
             >
               Submit
             </button>
           </div>
         </div>
       </div>
+
       <div class="round third-place">
         <h2>Third Place Match</h2>
         <div
@@ -128,16 +121,59 @@
                 v-model.number="match.team1Score"
                 type="number"
                 class="score-input"
+                :disabled="!semiFinalsSubmitted"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
                 class="score-input"
+                :disabled="!semiFinalsSubmitted"
+              />
+            </div>
+            <button
+              @click="submitScore(match, 'thirdPlaceComplete')"
+              class="submit-button"
+              :disabled="!semiFinalsSubmitted"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="round finals">
+        <h2>Finals</h2>
+        <div
+          v-for="(match, index) in finals"
+          :key="index"
+          class="match-container"
+        >
+          <div class="match">
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} -
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+            <div class="match-details">
+              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+            </div>
+            <div class="scores">
+              <input
+                v-model.number="match.team1Score"
+                type="number"
+                class="score-input"
+                :disabled="!thirdPlaceComplete"
+              />
+              <input
+                v-model.number="match.team2Score"
+                type="number"
+                class="score-input"
+                :disabled="!thirdPlaceComplete"
               />
             </div>
             <button
               @click="submitScore(match, 'complete')"
               class="submit-button"
+              :disabled="!thirdPlaceComplete"
             >
               Submit
             </button>
@@ -232,6 +268,12 @@ export default {
           date: "8 août 2024",
         },
       ],
+      quarterFinalsSubmitted: false,
+      semiFinalsSubmitted: false,
+      thirdPlaceComplete: false,
+      winner: "",
+      runnerUp: "",
+      thirdPlaceWinner: "",
     };
   },
   created() {
@@ -261,6 +303,9 @@ export default {
         } else {
           this.semiFinals[Math.floor(index / 2)].team2 = match.winner;
         }
+        if (this.quarterFinals.every((match) => match.winner)) {
+          this.quarterFinalsSubmitted = true;
+        }
       } else if (nextStage === "finals") {
         const index = this.semiFinals.indexOf(match);
         if (index === 0) {
@@ -270,6 +315,15 @@ export default {
           this.finals[0].team2 = match.winner;
           this.thirdPlace[0].team2 = match.loser;
         }
+        if (this.semiFinals.every((match) => match.winner)) {
+          this.semiFinalsSubmitted = true;
+        }
+      } else if (nextStage === "thirdPlaceComplete") {
+        this.thirdPlaceWinner = match.winner;
+        this.thirdPlaceComplete = true;
+      } else if (nextStage === "complete") {
+        this.winner = match.winner;
+        this.runnerUp = match.loser;
       }
     },
     getFlag(team) {
@@ -288,8 +342,8 @@ export default {
 <style scoped>
 .bracket-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bracket {
@@ -340,5 +394,25 @@ export default {
 
 .submit-button {
   margin-top: 5px;
+}
+
+.results {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.medal-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.medal {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  width: 150px;
+  text-align: center;
 }
 </style>
