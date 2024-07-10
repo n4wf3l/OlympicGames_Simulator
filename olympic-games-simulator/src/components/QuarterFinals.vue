@@ -3,18 +3,18 @@
     <div class="results" v-if="thirdPlaceComplete || winner">
       <h2>Results</h2>
       <div class="medal-container">
-        <div class="medal">
-          <h3>Gold</h3>
+        <div class="medal gold">
+          <h3>🥇 Gold</h3>
           <p>{{ winner }}</p>
           <img :src="getFlag(winner)" class="flag" />
         </div>
-        <div class="medal">
-          <h3>Silver</h3>
+        <div class="medal silver">
+          <h3>🥈 Silver</h3>
           <p>{{ runnerUp }}</p>
           <img :src="getFlag(runnerUp)" class="flag" />
         </div>
-        <div class="medal">
-          <h3>Bronze</h3>
+        <div class="medal bronze">
+          <h3>🥉 Bronze</h3>
           <p>{{ thirdPlaceWinner }}</p>
           <img :src="getFlag(thirdPlaceWinner)" class="flag" />
         </div>
@@ -23,7 +23,7 @@
 
     <div class="bracket">
       <div class="round quarter-finals">
-        <h2>Quarter Finals</h2>
+        <h2>¼ Finals</h2>
         <div
           v-for="(match, index) in quarterFinals"
           :key="index"
@@ -43,12 +43,14 @@
                 type="number"
                 min="0"
                 class="score-input"
+                @input="validateScore(match, 'team1Score')"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
                 min="0"
                 class="score-input"
+                @input="validateScore(match, 'team2Score')"
               />
             </div>
             <button
@@ -62,7 +64,7 @@
       </div>
 
       <div class="round semi-finals">
-        <h2>Semi Finals</h2>
+        <h2>½ Finals</h2>
         <div
           v-for="(match, index) in semiFinals"
           :key="index"
@@ -80,14 +82,16 @@
               <input
                 v-model.number="match.team1Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!quarterFinalsSubmitted"
+                @input="validateScore(match, 'team1Score')"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!quarterFinalsSubmitted"
+                @input="validateScore(match, 'team2Score')"
               />
             </div>
             <button
@@ -120,14 +124,16 @@
               <input
                 v-model.number="match.team1Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!semiFinalsSubmitted"
+                @input="validateScore(match, 'team1Score')"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!semiFinalsSubmitted"
+                @input="validateScore(match, 'team2Score')"
               />
             </div>
             <button
@@ -160,14 +166,16 @@
               <input
                 v-model.number="match.team1Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!thirdPlaceComplete"
+                @input="validateScore(match, 'team1Score')"
               />
               <input
                 v-model.number="match.team2Score"
                 type="number"
+                min="0"
                 class="score-input"
-                :disabled="!thirdPlaceComplete"
+                @input="validateScore(match, 'team2Score')"
               />
             </div>
             <button
@@ -194,7 +202,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Paris",
+          venue: "📍 Paris",
           time: "15h",
           date: "2 août 2024",
         },
@@ -203,7 +211,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Lyon",
+          venue: "📍 Lyon",
           time: "17h",
           date: "2 août 2024",
         },
@@ -212,7 +220,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Marseille",
+          venue: "📍 Marseille",
           time: "19h",
           date: "2 août 2024",
         },
@@ -221,7 +229,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Bordeaux",
+          venue: "📍 Bordeaux",
           time: "21h",
           date: "2 août 2024",
         },
@@ -232,7 +240,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Marseille",
+          venue: "📍 Marseille",
           time: "15h",
           date: "5 août 2024",
         },
@@ -241,7 +249,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Lyon",
+          venue: "📍 Lyon",
           time: "17h",
           date: "5 août 2024",
         },
@@ -252,7 +260,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Paris",
+          venue: "📍 Paris",
           time: "18h",
           date: "9 août 2024",
         },
@@ -263,17 +271,17 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
-          venue: "Nantes",
+          venue: "📍 Nantes",
           time: "17h",
           date: "8 août 2024",
         },
       ],
-      quarterFinalsSubmitted: false,
-      semiFinalsSubmitted: false,
       thirdPlaceComplete: false,
       winner: "",
       runnerUp: "",
       thirdPlaceWinner: "",
+      quarterFinalsSubmitted: false,
+      semiFinalsSubmitted: false,
     };
   },
   created() {
@@ -326,6 +334,11 @@ export default {
         this.runnerUp = match.loser;
       }
     },
+    validateScore(match, team) {
+      if (match[team] < 0) {
+        match[team] = 0;
+      }
+    },
     getFlag(team) {
       if (!team) return "";
       const teamFlagPath = team.replace(/\s+/g, "-").toLowerCase();
@@ -340,10 +353,54 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .bracket-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.results {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.medal-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.medal {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1px;
+  width: 100px;
+  text-align: center;
+}
+
+.gold {
+  background-color: gold;
+}
+
+.silver {
+  background-color: silver;
+}
+
+.bronze {
+  background-color: #cd7f32;
+}
+
+.flag {
+  width: 20px;
+  height: auto;
+  margin-top: 5px;
 }
 
 .bracket {
@@ -371,12 +428,6 @@ export default {
   text-align: center;
 }
 
-.flag {
-  width: 20px;
-  height: auto;
-  margin-right: 5px;
-}
-
 .match-details {
   margin: 5px 0;
 }
@@ -394,25 +445,5 @@ export default {
 
 .submit-button {
   margin-top: 5px;
-}
-
-.results {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.medal-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.medal {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  width: 150px;
-  text-align: center;
 }
 </style>
