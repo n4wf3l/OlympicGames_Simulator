@@ -202,6 +202,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Paris",
           time: "15h",
           date: "2 août 2024",
@@ -211,6 +212,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Lyon",
           time: "17h",
           date: "2 août 2024",
@@ -220,6 +222,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Marseille",
           time: "19h",
           date: "2 août 2024",
@@ -229,6 +232,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Bordeaux",
           time: "21h",
           date: "2 août 2024",
@@ -240,6 +244,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Marseille",
           time: "15h",
           date: "5 août 2024",
@@ -249,6 +254,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Lyon",
           time: "17h",
           date: "5 août 2024",
@@ -260,6 +266,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Paris",
           time: "18h",
           date: "9 août 2024",
@@ -271,6 +278,7 @@ export default {
           team2: "",
           team1Score: 0,
           team2Score: 0,
+          selectedWinner: "",
           venue: "📍 Nantes",
           time: "17h",
           date: "8 août 2024",
@@ -297,13 +305,24 @@ export default {
   },
   methods: {
     submitScore(match, nextStage) {
-      if (match.team1Score > match.team2Score) {
-        match.winner = match.team1;
-        match.loser = match.team2;
+      if (match.team1Score === match.team2Score) {
+        if (match.selectedWinner === "") {
+          alert("Match nul! Sélectionnez un vainqueur.");
+          return;
+        }
+        match.winner = match.selectedWinner;
+        match.loser =
+          match.selectedWinner === match.team1 ? match.team2 : match.team1;
       } else {
-        match.winner = match.team2;
-        match.loser = match.team1;
+        if (match.team1Score > match.team2Score) {
+          match.winner = match.team1;
+          match.loser = match.team2;
+        } else {
+          match.winner = match.team2;
+          match.loser = match.team1;
+        }
       }
+
       if (nextStage === "semiFinals") {
         const index = this.quarterFinals.indexOf(match);
         if (index % 2 === 0) {
@@ -413,6 +432,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .match-container {
