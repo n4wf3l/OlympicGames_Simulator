@@ -1,5 +1,5 @@
 <template>
-  <div class="bracket-container">
+  <div class="bracket-container" id="capture-section">
     <div class="results" v-if="thirdPlaceComplete || winner">
       <h2>Results</h2>
       <div class="medal-container">
@@ -37,7 +37,7 @@
             <div class="match-details">
               {{ match.venue }} à {{ match.time }} le {{ match.date }}
             </div>
-            <div class="scores">
+            <div class="scores" v-if="!scoresSubmitted">
               <input
                 v-model.number="match.team1Score"
                 type="number"
@@ -56,9 +56,11 @@
             <button
               @click="submitScore(match, 'semiFinals')"
               class="submit-button"
+              v-if="!scoresSubmitted"
             >
               Submit
             </button>
+            <div v-else>{{ match.team1Score }} - {{ match.team2Score }}</div>
           </div>
         </div>
       </div>
@@ -78,7 +80,7 @@
             <div class="match-details">
               {{ match.venue }} à {{ match.time }} le {{ match.date }}
             </div>
-            <div class="scores">
+            <div class="scores" v-if="!scoresSubmitted">
               <input
                 v-model.number="match.team1Score"
                 type="number"
@@ -98,9 +100,11 @@
               @click="submitScore(match, 'finals')"
               class="submit-button"
               :disabled="!quarterFinalsSubmitted"
+              v-if="!scoresSubmitted"
             >
               Submit
             </button>
+            <div v-else>{{ match.team1Score }} - {{ match.team2Score }}</div>
           </div>
         </div>
       </div>
@@ -120,7 +124,7 @@
             <div class="match-details">
               {{ match.venue }} à {{ match.time }} le {{ match.date }}
             </div>
-            <div class="scores">
+            <div class="scores" v-if="!scoresSubmitted">
               <input
                 v-model.number="match.team1Score"
                 type="number"
@@ -140,9 +144,11 @@
               @click="submitScore(match, 'thirdPlaceComplete')"
               class="submit-button"
               :disabled="!semiFinalsSubmitted"
+              v-if="!scoresSubmitted"
             >
               Submit
             </button>
+            <div v-else>{{ match.team1Score }} - {{ match.team2Score }}</div>
           </div>
         </div>
       </div>
@@ -162,7 +168,7 @@
             <div class="match-details">
               {{ match.venue }} à {{ match.time }} le {{ match.date }}
             </div>
-            <div class="scores">
+            <div class="scores" v-if="!scoresSubmitted">
               <input
                 v-model.number="match.team1Score"
                 type="number"
@@ -182,17 +188,24 @@
               @click="submitScore(match, 'complete')"
               class="submit-button"
               :disabled="!thirdPlaceComplete"
+              v-if="!scoresSubmitted"
             >
               Submit
             </button>
+            <div v-else>{{ match.team1Score }} - {{ match.team2Score }}</div>
           </div>
         </div>
       </div>
     </div>
+    <button id="capture-button" v-if="scoresSubmitted" @click="captureScreen">
+      Capture
+    </button>
   </div>
 </template>
 
 <script>
+import html2canvas from "html2canvas";
+
 export default {
   data() {
     return {
@@ -290,6 +303,7 @@ export default {
       thirdPlaceWinner: "",
       quarterFinalsSubmitted: false,
       semiFinalsSubmitted: false,
+      scoresSubmitted: false,
     };
   },
   created() {
@@ -351,6 +365,7 @@ export default {
       } else if (nextStage === "complete") {
         this.winner = match.winner;
         this.runnerUp = match.loser;
+        this.scoresSubmitted = true; // Setting the scoresSubmitted to true
       }
     },
     validateScore(match, team) {
@@ -367,6 +382,21 @@ export default {
         return ""; // Handle missing flag images gracefully
       }
     },
+    captureScreen() {
+      const captureElement = document.getElementById("capture-section");
+      const captureButton = document.getElementById("capture-button");
+
+      captureButton.style.display = "none"; // Hide the button before capture
+
+      html2canvas(captureElement).then((canvas) => {
+        captureButton.style.display = "block"; // Show the button again after capture
+
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "bracket.png";
+        link.click();
+      });
+    },
   },
 };
 </script>
@@ -374,15 +404,14 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-body {
-  font-family: "Roboto", sans-serif;
-}
-
 .bracket-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "Roboto", sans-serif;
+  background-color: #e6d8bce7;
+  width: 100%;
+  margin: 0%;
 }
 
 .results {
@@ -402,6 +431,7 @@ body {
   padding: 1px;
   width: 100px;
   text-align: center;
+  margin: 0 5px; /* Added margin between medals */
 }
 
 .gold {
@@ -465,5 +495,9 @@ body {
 
 .submit-button {
   margin-top: 5px;
+}
+
+#capture-button {
+  margin-top: 20px;
 }
 </style>
