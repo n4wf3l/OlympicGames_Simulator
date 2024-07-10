@@ -191,7 +191,13 @@ export default {
       this.$forceUpdate(); // Force rerender to update teams
     },
     getFlag(team) {
-      return `/assets/flags/${team.replace(/\s+/g, "-").toLowerCase()}.png`;
+      if (!team) return "";
+      const teamFlagPath = team.replace(/\s+/g, "-").toLowerCase();
+      try {
+        return require(`@/assets/flags/${teamFlagPath}.png`);
+      } catch (e) {
+        return ""; // Handle missing flag images gracefully
+      }
     },
   },
 };
