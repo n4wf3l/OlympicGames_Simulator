@@ -1,8 +1,0 @@
-<!-- knockout-stage.component.html -->
-<h2>Knockout Stage</h2>
-<div *ngFor="let stage of stages">
-  <h3>{{ stage }}</h3>
-  <div *ngFor="let match of getMatches(stage) | keyvalue">
-    <p>{{ match.key }}: {{ match.value.team1 }} - {{ match.value.team2 }}</p>
-  </div>
-</div>
