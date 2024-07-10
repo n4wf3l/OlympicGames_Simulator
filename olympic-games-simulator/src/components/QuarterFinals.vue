@@ -3,8 +3,11 @@
     <h2>Quarter Finals</h2>
     <div v-for="(match, index) in quarterFinals" :key="index">
       <div>
-        {{ match.team1 }} vs {{ match.team2 }} - {{ match.venue }} à
-        {{ match.time }} le {{ match.date }}
+        <img :src="getFlag(match.team1)" class="flag" />
+        {{ match.team1 }} vs
+        <img :src="getFlag(match.team2)" class="flag" />
+        {{ match.team2 }} - {{ match.venue }} à {{ match.time }} le
+        {{ match.date }}
         <input v-model.number="match.team1Score" type="number" />
         <input v-model.number="match.team2Score" type="number" />
         <button @click="submitScore(match, 'semiFinals')">Submit</button>
@@ -15,8 +18,11 @@
     <h2>Semi Finals</h2>
     <div v-for="(match, index) in semiFinals" :key="index">
       <div>
-        {{ match.team1 }} vs {{ match.team2 }} - {{ match.venue }} à
-        {{ match.time }} le {{ match.date }}
+        <img :src="getFlag(match.team1)" class="flag" />
+        {{ match.team1 }} vs
+        <img :src="getFlag(match.team2)" class="flag" />
+        {{ match.team2 }} - {{ match.venue }} à {{ match.time }} le
+        {{ match.date }}
         <input v-model.number="match.team1Score" type="number" />
         <input v-model.number="match.team2Score" type="number" />
         <button @click="submitScore(match, 'finals')">Submit</button>
@@ -27,8 +33,11 @@
     <h2>Finals</h2>
     <div v-for="(match, index) in finals" :key="index">
       <div>
-        {{ match.team1 }} vs {{ match.team2 }} - {{ match.venue }} à
-        {{ match.time }} le {{ match.date }}
+        <img :src="getFlag(match.team1)" class="flag" />
+        {{ match.team1 }} vs
+        <img :src="getFlag(match.team2)" class="flag" />
+        {{ match.team2 }} - {{ match.venue }} à {{ match.time }} le
+        {{ match.date }}
         <input v-model.number="match.team1Score" type="number" />
         <input v-model.number="match.team2Score" type="number" />
         <button @click="submitScore(match, 'thirdPlace')">Submit</button>
@@ -38,8 +47,11 @@
     <h2>Third Place Match</h2>
     <div v-for="(match, index) in thirdPlace" :key="index">
       <div>
-        {{ match.team1 }} vs {{ match.team2 }} - {{ match.venue }} à
-        {{ match.time }} le {{ match.date }}
+        <img :src="getFlag(match.team1)" class="flag" />
+        {{ match.team1 }} vs
+        <img :src="getFlag(match.team2)" class="flag" />
+        {{ match.team2 }} - {{ match.venue }} à {{ match.time }} le
+        {{ match.date }}
         <input v-model.number="match.team1Score" type="number" />
         <input v-model.number="match.team2Score" type="number" />
         <button @click="submitScore(match, 'complete')">Submit</button>
@@ -178,6 +190,9 @@ export default {
     goToFinals() {
       this.$forceUpdate(); // Force rerender to update teams
     },
+    getFlag(team) {
+      return `/assets/flags/${team.replace(/\s+/g, "-").toLowerCase()}.png`;
+    },
   },
 };
 </script>
@@ -190,5 +205,10 @@ export default {
 }
 .match {
   margin: 10px 0;
+}
+.flag {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
 }
 </style>

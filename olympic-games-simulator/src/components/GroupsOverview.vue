@@ -1,46 +1,112 @@
 <template>
   <div class="groups-overview">
-    <div v-for="group in groups" :key="group.name" class="group">
-      <h2>{{ group.name }}</h2>
-      <div v-for="match in group.matches" :key="match.id" class="match">
-        <span>{{ match.team1 }} vs {{ match.team2 }}</span>
-        <input
-          type="number"
-          v-model.number="match.team1Score"
-          placeholder="Score {{ match.team1 }}"
-        />
-        <input
-          type="number"
-          v-model.number="match.team2Score"
-          placeholder="Score {{ match.team2 }}"
-        />
-        <button @click="handleScoreSubmit(match, group)">Submit</button>
-      </div>
-      <div class="standings">
-        <h3>Standings</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Team</th>
-              <th>Points</th>
-              <th>Goals For</th>
-              <th>Goals Against</th>
-              <th>Goal Difference</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="team in sortedTeams(group.teams)" :key="team.name">
-              <td>{{ team.name }}</td>
-              <td>{{ team.points }}</td>
-              <td>{{ team.goalsFor }}</td>
-              <td>{{ team.goalsAgainst }}</td>
-              <td>{{ team.goalsFor - team.goalsAgainst }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="group-row">
+      <div v-for="group in groups.slice(0, 2)" :key="group.name" class="group">
+        <h2>{{ group.name }}</h2>
+        <div v-for="match in group.matches" :key="match.id" class="match">
+          <span>
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} vs
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+          </span>
+          <input
+            type="number"
+            v-model.number="match.team1Score"
+            placeholder="Score {{ match.team1 }}"
+          />
+          <input
+            type="number"
+            v-model.number="match.team2Score"
+            placeholder="Score {{ match.team2 }}"
+          />
+          <button @click="handleScoreSubmit(match, group)">Submit</button>
+        </div>
+        <div class="standings">
+          <h3>Standings</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Goals For</th>
+                <th>Goals Against</th>
+                <th>Goal Difference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="([teamName, team], index) in sortedTeams(group.teams)"
+                :key="index"
+              >
+                <td>
+                  <img :src="getFlag(teamName)" class="flag" />{{ teamName }}
+                </td>
+                <td>{{ team.points }}</td>
+                <td>{{ team.goalsFor }}</td>
+                <td>{{ team.goalsAgainst }}</td>
+                <td>{{ team.goalsFor - team.goalsAgainst }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <button @click="goToQuarterFinals">Go to Quarter Finals</button>
+    <div class="group-row">
+      <div v-for="group in groups.slice(2, 4)" :key="group.name" class="group">
+        <h2>{{ group.name }}</h2>
+        <div v-for="match in group.matches" :key="match.id" class="match">
+          <span>
+            <img :src="getFlag(match.team1)" class="flag" />
+            {{ match.team1 }} vs
+            <img :src="getFlag(match.team2)" class="flag" />
+            {{ match.team2 }}
+          </span>
+          <input
+            type="number"
+            v-model.number="match.team1Score"
+            placeholder="Score {{ match.team1 }}"
+          />
+          <input
+            type="number"
+            v-model.number="match.team2Score"
+            placeholder="Score {{ match.team2 }}"
+          />
+          <button @click="handleScoreSubmit(match, group)">Submit</button>
+        </div>
+        <div class="standings">
+          <h3>Standings</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Goals For</th>
+                <th>Goals Against</th>
+                <th>Goal Difference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="([teamName, team], index) in sortedTeams(group.teams)"
+                :key="index"
+              >
+                <td>
+                  <img :src="getFlag(teamName)" class="flag" />{{ teamName }}
+                </td>
+                <td>{{ team.points }}</td>
+                <td>{{ team.goalsFor }}</td>
+                <td>{{ team.goalsAgainst }}</td>
+                <td>{{ team.goalsFor - team.goalsAgainst }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <button @click="goToQuarterFinals" class="go-to-quarter-finals">
+      Go to Quarter Finals
+    </button>
   </div>
 </template>
 
@@ -49,175 +115,175 @@ export default {
   data() {
     return {
       groups: [
+        // Group A
         {
-          name: "Groupe A",
+          name: "Group A",
           matches: [
             {
               id: 1,
               team1: "France",
-              team2: "États-Unis",
+              team2: "USA",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 2,
-              team1: "Guinée",
-              team2: "Nouvelle-Zélande",
+              team1: "Guinea",
+              team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 3,
               team1: "France",
-              team2: "Guinée",
+              team2: "Guinea",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 4,
-              team1: "États-Unis",
-              team2: "Nouvelle-Zélande",
+              team1: "USA",
+              team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 5,
               team1: "France",
-              team2: "Nouvelle-Zélande",
+              team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 6,
-              team1: "États-Unis",
-              team2: "Guinée",
+              team1: "USA",
+              team2: "Guinea",
               team1Score: 0,
               team2Score: 0,
             },
           ],
           teams: {
             France: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            "États-Unis": { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Guinée: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            "Nouvelle-Zélande": { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            USA: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Guinea: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            "New Zealand": { points: 0, goalsFor: 0, goalsAgainst: 0 },
           },
         },
+        // Group B
         {
-          name: "Groupe B",
+          name: "Group B",
           matches: [
             {
               id: 1,
-              team1: "Argentine",
-              team2: "Maroc",
+              team1: "Argentina",
+              team2: "Morocco",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 2,
-              team1: "Irak",
+              team1: "Iraq",
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 3,
-              team1: "Argentine",
-              team2: "Irak",
+              team1: "Argentina",
+              team2: "Iraq",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 4,
-              team1: "Maroc",
+              team1: "Morocco",
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 5,
-              team1: "Argentine",
+              team1: "Argentina",
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 6,
-              team1: "Maroc",
-              team2: "Irak",
+              team1: "Morocco",
+              team2: "Iraq",
               team1Score: 0,
               team2Score: 0,
             },
           ],
           teams: {
-            Argentine: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Maroc: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Irak: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Argentina: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Morocco: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Iraq: { points: 0, goalsFor: 0, goalsAgainst: 0 },
             Ukraine: { points: 0, goalsFor: 0, goalsAgainst: 0 },
           },
         },
+        // Group C
         {
-          name: "Groupe C",
+          name: "Group C",
           matches: [
             {
               id: 1,
-              team1: "Ouzbékistan",
-              team2: "Espagne",
+              team1: "Uzbekistan",
+              team2: "Spain",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 2,
-              team1: "Égypte",
-              team2: "République dominicaine",
+              team1: "Egypt",
+              team2: "Dominican Republic",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 3,
-              team1: "Ouzbékistan",
-              team2: "Égypte",
+              team1: "Uzbekistan",
+              team2: "Egypt",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 4,
-              team1: "Espagne",
-              team2: "République dominicaine",
+              team1: "Spain",
+              team2: "Dominican Republic",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 5,
-              team1: "Ouzbékistan",
-              team2: "République dominicaine",
+              team1: "Uzbekistan",
+              team2: "Dominican Republic",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 6,
-              team1: "Espagne",
-              team2: "Égypte",
+              team1: "Spain",
+              team2: "Egypt",
               team1Score: 0,
               team2Score: 0,
             },
           ],
           teams: {
-            Ouzbékistan: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Espagne: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Égypte: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            "République dominicaine": {
-              points: 0,
-              goalsFor: 0,
-              goalsAgainst: 0,
-            },
+            Uzbekistan: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Spain: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Egypt: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            "Dominican Republic": { points: 0, goalsFor: 0, goalsAgainst: 0 },
           },
         },
+        // Group D
         {
-          name: "Groupe D",
+          name: "Group D",
           matches: [
             {
               id: 1,
-              team1: "Japon",
+              team1: "Japan",
               team2: "Paraguay",
               team1Score: 0,
               team2Score: 0,
@@ -225,13 +291,13 @@ export default {
             {
               id: 2,
               team1: "Mali",
-              team2: "Israël",
+              team2: "Israel",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 3,
-              team1: "Japon",
+              team1: "Japan",
               team2: "Mali",
               team1Score: 0,
               team2Score: 0,
@@ -239,14 +305,14 @@ export default {
             {
               id: 4,
               team1: "Paraguay",
-              team2: "Israël",
+              team2: "Israel",
               team1Score: 0,
               team2Score: 0,
             },
             {
               id: 5,
-              team1: "Japon",
-              team2: "Israël",
+              team1: "Japan",
+              team2: "Israel",
               team1Score: 0,
               team2Score: 0,
             },
@@ -259,10 +325,10 @@ export default {
             },
           ],
           teams: {
-            Japon: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Japan: { points: 0, goalsFor: 0, goalsAgainst: 0 },
             Paraguay: { points: 0, goalsFor: 0, goalsAgainst: 0 },
             Mali: { points: 0, goalsFor: 0, goalsAgainst: 0 },
-            Israël: { points: 0, goalsFor: 0, goalsAgainst: 0 },
+            Israel: { points: 0, goalsFor: 0, goalsAgainst: 0 },
           },
         },
       ],
@@ -281,38 +347,42 @@ export default {
 
       // Calculer les points
       if (match.team1Score > match.team2Score) {
-        // team1 gagne
         team1.points += 3;
       } else if (match.team1Score < match.team2Score) {
-        // team2 gagne
         team2.points += 3;
       } else {
-        // match nul
         team1.points += 1;
         team2.points += 1;
       }
     },
-    sortedTeams(teams) {
-      return Object.keys(teams)
-        .map((name) => ({ name, ...teams[name] }))
-        .sort(
-          (a, b) =>
-            b.points - a.points ||
-            b.goalsFor - b.goalsAgainst - (a.goalsFor - a.goalsAgainst)
-        );
-    },
     goToQuarterFinals() {
-      const quarterFinals = [];
-      this.groups.forEach((group) => {
-        const sortedTeams = this.sortedTeams(group.teams);
-        quarterFinals.push({
-          first: sortedTeams[0].name,
-          second: sortedTeams[1].name,
+      const quarterFinalsData = this.groups.map((group) => {
+        const teams = Object.entries(group.teams).sort(([, a], [, b]) => {
+          if (a.points !== b.points) return b.points - a.points;
+          if (a.goalsFor - a.goalsAgainst !== b.goalsFor - b.goalsAgainst) {
+            return b.goalsFor - b.goalsAgainst - (a.goalsFor - a.goalsAgainst);
+          }
+          return b.goalsFor - a.goalsFor;
         });
+        return { first: teams[0][0], second: teams[1][0] };
       });
       this.$router.push({
         path: "/quarter-finals",
-        query: { quarterFinals: JSON.stringify(quarterFinals) },
+        query: { quarterFinals: JSON.stringify(quarterFinalsData) },
+      });
+    },
+    getFlag(team) {
+      return require(`@/assets/flags/${team
+        .replace(/\s+/g, "-")
+        .toLowerCase()}.png`);
+    },
+    sortedTeams(teams) {
+      return Object.entries(teams).sort(([, a], [, b]) => {
+        if (a.points !== b.points) return b.points - a.points;
+        if (a.goalsFor - a.goalsAgainst !== b.goalsFor - b.goalsAgainst) {
+          return b.goalsFor - b.goalsAgainst - (a.goalsFor - a.goalsAgainst);
+        }
+        return b.goalsFor - a.goalsFor;
       });
     },
   },
@@ -322,14 +392,20 @@ export default {
 <style scoped>
 .groups-overview {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+.group-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }
 .group {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
   margin: 10px;
-  width: calc(50% - 40px);
+  width: calc(45% - 40px);
 }
 .match {
   margin: 10px 0;
@@ -337,17 +413,34 @@ export default {
 .standings {
   margin-top: 20px;
 }
-table {
+.standings table {
   width: 100%;
   border-collapse: collapse;
 }
-th,
-td {
+.standings th,
+.standings td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
-th {
-  background-color: #f2f2f2;
+.standings th {
+  background-color: #f4f4f4;
+}
+.flag {
+  width: 20px;
+  height: 14px;
+  margin-right: 5px;
+}
+.go-to-quarter-finals {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.go-to-quarter-finals:hover {
+  background-color: #0056b3;
 }
 </style>
