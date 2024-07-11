@@ -16,6 +16,13 @@ This application is essential for football enthusiasts, sports analysts, and fan
 ## Project Overview
 The Olympic Games 2024 Football Simulator is a web application built using Vue.js. It aims to provide users with an interactive way to simulate the football matches, update scores, and visualize the progression of teams from the group stages to the finals.
 
+![image](https://github.com/user-attachments/assets/742b9305-da6a-4319-9952-9c2c6e2473e1)
+![image](https://github.com/user-attachments/assets/6f91c2c6-4b33-4b72-a132-da373cd177c4)
+![image](https://github.com/user-attachments/assets/5f637095-9044-42b3-a9d4-f3604a293077)
+![image](https://github.com/user-attachments/assets/3a984677-c44d-4859-aeef-5a1e8eccd0a1)
+![image](https://github.com/user-attachments/assets/4d68e4e0-fecd-4ef6-9840-042b427bb7a5)
+![image](https://github.com/user-attachments/assets/56d136d4-57f5-4405-b0a6-8a68d2a7ba27)
+
 ## Features
 - 🔄 Real-time match simulation
 - 📊 Score and ranking tracking
