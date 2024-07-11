@@ -135,10 +135,10 @@
       </div>
     </div>
     <div class="quarter-finals-info">
-      <p>1B — 2A</p>
-      <p>1D — 2C</p>
-      <p>1C — 2D</p>
       <p>1A — 2B</p>
+      <p>1B — 2A</p>
+      <p>1C — 2D</p>
+      <p>1D — 2C</p>
     </div>
     <button
       @click="goToQuarterFinals"
