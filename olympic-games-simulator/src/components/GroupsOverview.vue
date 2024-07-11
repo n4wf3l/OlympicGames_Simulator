@@ -45,7 +45,7 @@
                 <th>Points</th>
                 <th>Goals For</th>
                 <th>Goals Against</th>
-                <th>Goal Difference</th>
+                <th>Goal Diff.</th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +111,7 @@
                 <th>Points</th>
                 <th>Goals For</th>
                 <th>Goals Against</th>
-                <th>Goal Difference</th>
+                <th>Goal Diff.</th>
               </tr>
             </thead>
             <tbody>
@@ -596,18 +596,29 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Anton SC", sans-serif;
+  color: #6c757d;
+}
+
 .groups-overview {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  color: #6c757d;
 }
 
 .group-row {
   display: flex;
   width: 100%;
   justify-content: space-around;
+  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
@@ -622,6 +633,7 @@ export default {
 
 .match {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
@@ -631,7 +643,8 @@ export default {
 .teams {
   display: flex;
   align-items: center;
-  width: 40%;
+  justify-content: center;
+  width: 100%;
 }
 
 .team-name {
@@ -644,7 +657,9 @@ export default {
 
 .scores {
   display: flex;
+  justify-content: center;
   align-items: center;
+  margin: 10px 0;
 }
 
 .scores input {
@@ -674,8 +689,8 @@ export default {
 .match-info {
   font-size: 10px;
   color: grey;
-  text-align: right;
-  width: 30%;
+  text-align: center;
+  width: 100%;
 }
 
 .standings {
@@ -755,5 +770,40 @@ export default {
   width: 50px;
   height: auto;
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .group {
+    width: 90%; /* Ajustez cette valeur si nécessaire */
+  }
+
+  .match {
+    flex-direction: column; /* Aligner les éléments verticalement en mobile */
+  }
+
+  .teams {
+    width: 100%; /* Faire en sorte que l'élément prenne toute la largeur */
+    justify-content: center; /* Centrer le contenu horizontalement */
+  }
+
+  .scores {
+    width: 100%; /* Faire en sorte que l'élément prenne toute la largeur */
+    justify-content: center; /* Centrer le contenu horizontalement */
+  }
+
+  .scores input {
+    width: 45px; /* Ajustez cette valeur si nécessaire pour la taille des inputs */
+    margin: 5px; /* Espace entre les inputs */
+  }
+
+  .scores button {
+    width: auto; /* Assurez-vous que le bouton ne prenne pas toute la largeur */
+  }
+
+  .match-info {
+    width: 100%;
+    text-align: center; /* Centrer le texte */
+    margin-top: 10px;
+  }
 }
 </style>

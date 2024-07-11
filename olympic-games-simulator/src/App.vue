@@ -34,6 +34,7 @@ html {
   text-align: center;
   background-color: rgb(252, 250, 232);
 }
+
 header {
   display: flex;
   flex-direction: row;
@@ -43,7 +44,20 @@ header {
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 2px;
 }
+
 header img {
   margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }
 </style>

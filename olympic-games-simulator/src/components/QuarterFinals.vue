@@ -404,12 +404,18 @@ export default {
       const captureButton = document.getElementById("capture-button");
       const footerElement = document.querySelector(".footer");
 
+      // Ajouter la classe .force-desktop
+      captureElement.classList.add("force-desktop");
+
       captureButton.style.display = "none"; // Hide the button before capture
       footerElement.style.display = "none"; // Hide the footer before capture
 
       html2canvas(captureElement).then((canvas) => {
         captureButton.style.display = "block"; // Show the button again after capture
         footerElement.style.display = "block"; // Show the footer again after capture
+
+        // Supprimer la classe .force-desktop
+        captureElement.classList.remove("force-desktop");
 
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
@@ -543,6 +549,19 @@ export default {
   background-color: #dbd4c1; /* Darker blue on hover */
 }
 
+.force-desktop .bracket {
+  flex-direction: row;
+}
+
+.force-desktop .match-container {
+  width: auto;
+  display: block;
+}
+
+.force-desktop .match {
+  width: 250px;
+}
+
 .footer {
   background-color: rgb(252, 250, 232);
   color: rgb(0, 0, 0);
@@ -562,5 +581,24 @@ export default {
   width: 50px;
   height: auto;
   margin-bottom: 10px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  .bracket {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .match-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .match {
+    width: 80%; /* Adjust the width as needed */
+    margin: 10px 0;
+  }
 }
 </style>
