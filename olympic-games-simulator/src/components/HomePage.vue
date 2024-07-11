@@ -24,25 +24,25 @@
 
       <h3>Football at the Olympics</h3>
       <p>
-        Football is one of the most popular sports at the Olympic Games. Here
+        ⚽ Football is one of the most popular sports at the Olympic Games. Here
         are some key points about the competition:
       </p>
       <ul>
         <li>
-          <strong>Age Limit:</strong> Men's teams are primarily composed of
+          <strong>🎂 Age Limit:</strong> Men's teams are primarily composed of
           players under 23 years old (born on or after January 1, 2001), with
           the allowance of three over-age players.
         </li>
         <li>
-          <strong>Team Composition:</strong> Each team can register up to 18
+          <strong>📝 Team Composition:</strong> Each team can register up to 18
           players for the tournament.
         </li>
         <li>
-          <strong>Tournament Format:</strong> The competition begins with a
+          <strong>🏆 Tournament Format:</strong> The competition begins with a
           group stage followed by knockout rounds.
         </li>
         <li>
-          <strong>Venues:</strong> Matches will be held in several cities,
+          <strong>🗼 Venues:</strong> Matches will be held in several cities,
           including Paris, Marseille, Lyon, Nice, and Bordeaux.
         </li>
       </ul>
@@ -65,25 +65,83 @@
 
       <h3>Historical Context</h3>
       <p>
-        Football has been a part of the modern Olympic Games since 1900. The
-        tournament provides a platform for young talent to showcase their skills
-        on an international stage.
+        Football has been a significant part of the modern Olympic Games since
+        1900. The early tournaments saw club teams participating, with Upton
+        Park F.C. winning the first gold medal in Paris. By 1908, national teams
+        began competing, with Great Britain dominating the early years, securing
+        gold in 1908 and 1912.
       </p>
-
+      <p>
+        The 1920s marked a pivotal era, introducing non-European teams, with
+        Egypt participating in 1920 and Uruguay winning consecutive gold medals
+        in 1924 and 1928. This period highlighted the growing popularity and
+        competitive nature of Olympic football.
+      </p>
+      <p>
+        Post-World War II, Eastern European nations dominated due to their
+        state-sponsored amateur athletes, with Hungary, the Soviet Union, and
+        Yugoslavia securing multiple medals. The introduction of professional
+        players in 1984 transformed the competition, leading to diverse winners
+        including Nigeria in 1996 and Cameroon in 2000.
+      </p>
+      <p>
+        Women's football was introduced in 1996, running parallel to the men's
+        tournament but without age restrictions. The Olympic Games continue to
+        be a platform for showcasing young talent and promoting global football
+        excellence.
+      </p>
       <h3>Key Dates</h3>
-      <ul>
-        <li><strong>Group Stage:</strong> July 24 - July 30, 2024</li>
-        <li><strong>Quarter-Finals:</strong> August 2, 2024</li>
-        <li><strong>Semi-Finals:</strong> August 5, 2024</li>
-        <li><strong>Third Place Match:</strong> August 8, 2024</li>
-        <li><strong>Final:</strong> August 9, 2024</li>
-      </ul>
+      <table class="key-dates-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Stadium</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📅 <strong>Group Stage</strong></td>
+            <td>July 24 - July 30, 2024</td>
+            <td>🏟️ Various Stadiums</td>
+            <td>⏰ See Schedule</td>
+          </tr>
+          <tr>
+            <td>📅 <strong>Quarter-Finals</strong></td>
+            <td>August 2, 2024</td>
+            <td>🏟️ Parc des Princes, Paris</td>
+            <td>⏰ 3, 5, 7 & 9 PM</td>
+          </tr>
+          <tr>
+            <td>📅 <strong>Semi-Finals</strong></td>
+            <td>August 5, 2024</td>
+            <td>🏟️ Stade Vélodrome, Marseille</td>
+            <td>⏰ 3 & 5 PM</td>
+          </tr>
+          <tr>
+            <td>📅 <strong>Third Place Match</strong></td>
+            <td>August 8, 2024</td>
+            <td>🏟️ Stade Geoffroy-Guichard, Saint-Étienne</td>
+            <td>⏰ 5 PM</td>
+          </tr>
+          <tr>
+            <td>📅 <strong>Final</strong></td>
+            <td>August 9, 2024</td>
+            <td>🏟️ Stade de France, Paris</td>
+            <td>⏰ 6 PM</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h3>Additional Information</h3>
       <p>
         For more details about the rules, team compositions, and historical
         data, please visit the official
-        <a href="https://olympics.com/en/paris-2024" target="_blank"
+        <a
+          href="https://olympics.com/en/paris-2024"
+          target="_blank"
+          style="color: inherit; text-decoration: none; color: #694d19"
           >Olympic website</a
         >.
       </p>
@@ -164,6 +222,41 @@ header .logo {
 }
 .info ul li {
   margin: 5px 0;
+}
+.key-dates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.key-dates-table th,
+.key-dates-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.key-dates-table th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+}
+
+.key-dates-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.key-dates-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.key-dates-table td {
+  vertical-align: middle;
+}
+
+.key-dates-table td:first-child {
+  font-weight: bold;
+  color: #333;
 }
 
 .footer {
