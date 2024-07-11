@@ -134,6 +134,12 @@
         </div>
       </div>
     </div>
+    <div class="quarter-finals-info">
+      <p>1B — 2A</p>
+      <p>1D — 2C</p>
+      <p>1C — 2D</p>
+      <p>1A — 2B</p>
+    </div>
     <button
       @click="goToQuarterFinals"
       class="go-to-quarter-finals"
@@ -652,7 +658,7 @@ export default {
 }
 
 .scores button {
-  background-color: #8b5a2b; /* Dark brown */
+  background-color: #a57a2a;
   color: white;
   border: none;
   border-radius: 5px;
@@ -660,12 +666,12 @@ export default {
   cursor: pointer;
 }
 
-.scores button.submitted {
-  background-color: #dfc99a; /* Light brown */
+.scores button:hover {
+  background-color: #a57a2a;
 }
 
-.scores button:hover:not(.submitted) {
-  background-color: #a57a2a; /* Darker brown on hover */
+.scores button.submitted {
+  background-color: #dfc99a;
 }
 
 .match-info {
@@ -701,10 +707,19 @@ export default {
   margin-right: 5px;
 }
 
+.quarter-finals-info {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
 .go-to-quarter-finals {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #8b5a2b; /* Dark brown */
+  background-color: #85601b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -712,11 +727,11 @@ export default {
 }
 
 .go-to-quarter-finals:disabled {
-  background-color: #ccc;
+  background-color: #6c757d;
   cursor: not-allowed;
 }
 
-.go-to-quarter-finals:not(:disabled):hover {
-  background-color: #a57a2a; /* Darker brown on hover */
+.go-to-quarter-finals:hover:enabled {
+  background-color: #b17633;
 }
 </style>

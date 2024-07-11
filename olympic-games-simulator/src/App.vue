@@ -4,7 +4,7 @@
       <a href="/" target="_blank">
         <img src="@/assets/flags/logo.png" alt="Olympic Logo" width="50" />
       </a>
-      <h1>Jeux Olympiques - Équipes Qualifiées par Groupe</h1>
+      <h1>Football Simulator — Olympic Games 2024</h1>
     </header>
     <router-view></router-view>
   </div>
