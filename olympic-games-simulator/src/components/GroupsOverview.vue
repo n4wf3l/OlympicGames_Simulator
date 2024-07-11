@@ -4,23 +4,32 @@
       <div v-for="group in groups.slice(0, 2)" :key="group.name" class="group">
         <h2>{{ group.name }}</h2>
         <div v-for="match in group.matches" :key="match.id" class="match">
-          <span>
+          <span class="teams">
             <img :src="getFlag(match.team1)" class="flag" />
-            {{ match.team1 }} vs
+            <span class="team-name">{{ match.team1 }}</span>
+            <span class="separator"> — </span>
+            <span class="team-name">{{ match.team2 }}</span>
             <img :src="getFlag(match.team2)" class="flag" />
-            {{ match.team2 }}
           </span>
-          <input
-            type="number"
-            v-model.number="match.team1Score"
-            placeholder="Score {{ match.team1 }}"
-          />
-          <input
-            type="number"
-            v-model.number="match.team2Score"
-            placeholder="Score {{ match.team2 }}"
-          />
-          <button @click="handleScoreSubmit(match, group)">Submit</button>
+          <div class="scores">
+            <input
+              type="number"
+              v-model.number="match.team1Score"
+              placeholder="Score"
+              min="0"
+            />
+            <input
+              type="number"
+              v-model.number="match.team2Score"
+              placeholder="Score"
+              min="0"
+            />
+            <button @click="handleScoreSubmit(match, group)">Submit</button>
+          </div>
+          <div class="match-info">
+            {{ match.date }}<br />
+            {{ match.time }} ({{ match.venue }})
+          </div>
         </div>
         <div class="standings">
           <h3>Standings</h3>
@@ -56,23 +65,32 @@
       <div v-for="group in groups.slice(2, 4)" :key="group.name" class="group">
         <h2>{{ group.name }}</h2>
         <div v-for="match in group.matches" :key="match.id" class="match">
-          <span>
+          <span class="teams">
             <img :src="getFlag(match.team1)" class="flag" />
-            {{ match.team1 }} vs
+            <span class="team-name">{{ match.team1 }}</span>
+            <span class="separator"> — </span>
+            <span class="team-name">{{ match.team2 }}</span>
             <img :src="getFlag(match.team2)" class="flag" />
-            {{ match.team2 }}
           </span>
-          <input
-            type="number"
-            v-model.number="match.team1Score"
-            placeholder="Score {{ match.team1 }}"
-          />
-          <input
-            type="number"
-            v-model.number="match.team2Score"
-            placeholder="Score {{ match.team2 }}"
-          />
-          <button @click="handleScoreSubmit(match, group)">Submit</button>
+          <div class="scores">
+            <input
+              type="number"
+              v-model.number="match.team1Score"
+              placeholder="Score"
+              min="0"
+            />
+            <input
+              type="number"
+              v-model.number="match.team2Score"
+              placeholder="Score"
+              min="0"
+            />
+            <button @click="handleScoreSubmit(match, group)">Submit</button>
+          </div>
+          <div class="match-info">
+            {{ match.date }}<br />
+            {{ match.time }} ({{ match.venue }})
+          </div>
         </div>
         <div class="standings">
           <h3>Standings</h3>
@@ -125,6 +143,9 @@ export default {
               team2: "USA",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "15:00",
+              venue: "Marseille",
             },
             {
               id: 2,
@@ -132,6 +153,9 @@ export default {
               team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "11:00",
+              venue: "Nice",
             },
             {
               id: 3,
@@ -139,6 +163,9 @@ export default {
               team2: "Guinea",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "15:00",
+              venue: "Nice",
             },
             {
               id: 4,
@@ -146,6 +173,9 @@ export default {
               team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "13:00",
+              venue: "Marseille",
             },
             {
               id: 5,
@@ -153,6 +183,9 @@ export default {
               team2: "New Zealand",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "13:00",
+              venue: "Marseille",
             },
             {
               id: 6,
@@ -160,6 +193,9 @@ export default {
               team2: "Guinea",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "13:00",
+              venue: "Saint-Étienne",
             },
           ],
           teams: {
@@ -179,6 +215,9 @@ export default {
               team2: "Morocco",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "09:00",
+              venue: "Saint-Étienne",
             },
             {
               id: 2,
@@ -186,6 +225,9 @@ export default {
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "13:00",
+              venue: "Lyon",
             },
             {
               id: 3,
@@ -193,6 +235,9 @@ export default {
               team2: "Iraq",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "09:00",
+              venue: "Lyon",
             },
             {
               id: 4,
@@ -200,6 +245,9 @@ export default {
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "11:00",
+              venue: "Saint-Étienne",
             },
             {
               id: 5,
@@ -207,6 +255,9 @@ export default {
               team2: "Ukraine",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "11:00",
+              venue: "Lyon",
             },
             {
               id: 6,
@@ -214,6 +265,9 @@ export default {
               team2: "Iraq",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "11:00",
+              venue: "Nice",
             },
           ],
           teams: {
@@ -233,6 +287,9 @@ export default {
               team2: "Spain",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "09:00",
+              venue: "Paris",
             },
             {
               id: 2,
@@ -240,27 +297,39 @@ export default {
               team2: "Dominican Republic",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "11:00",
+              venue: "Nantes",
             },
             {
               id: 3,
+              team1: "Dominican Republic",
+              team2: "Spain",
+              team1Score: 0,
+              team2Score: 0,
+              date: "Saturday 27 July",
+              time: "09:00",
+              venue: "Bordeaux",
+            },
+            {
+              id: 4,
               team1: "Uzbekistan",
               team2: "Egypt",
               team1Score: 0,
               team2Score: 0,
-            },
-            {
-              id: 4,
-              team1: "Spain",
-              team2: "Dominican Republic",
-              team1Score: 0,
-              team2Score: 0,
+              date: "Saturday 27 July",
+              time: "11:00",
+              venue: "Nantes",
             },
             {
               id: 5,
-              team1: "Uzbekistan",
-              team2: "Dominican Republic",
+              team1: "Dominican Republic",
+              team2: "Uzbekistan",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "09:00",
+              venue: "Paris",
             },
             {
               id: 6,
@@ -268,6 +337,9 @@ export default {
               team2: "Egypt",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "09:00",
+              venue: "Bordeaux",
             },
           ],
           teams: {
@@ -287,6 +359,9 @@ export default {
               team2: "Paraguay",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "13:00",
+              venue: "Bordeaux",
             },
             {
               id: 2,
@@ -294,34 +369,49 @@ export default {
               team2: "Israel",
               team1Score: 0,
               team2Score: 0,
+              date: "Wednesday 24 July",
+              time: "15:00",
+              venue: "Paris",
             },
             {
               id: 3,
-              team1: "Japan",
-              team2: "Mali",
+              team1: "Paraguay",
+              team2: "Israel",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "13:00",
+              venue: "Paris",
             },
             {
               id: 4,
-              team1: "Paraguay",
-              team2: "Israel",
+              team1: "Japan",
+              team2: "Mali",
               team1Score: 0,
               team2Score: 0,
+              date: "Saturday 27 July",
+              time: "15:00",
+              venue: "Bordeaux",
             },
             {
               id: 5,
-              team1: "Japan",
-              team2: "Israel",
-              team1Score: 0,
-              team2Score: 0,
-            },
-            {
-              id: 6,
               team1: "Paraguay",
               team2: "Mali",
               team1Score: 0,
               team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "15:00",
+              venue: "Paris",
+            },
+            {
+              id: 6,
+              team1: "Israel",
+              team2: "Japan",
+              team1Score: 0,
+              team2Score: 0,
+              date: "Tuesday 30 July",
+              time: "15:00",
+              venue: "Nantes",
             },
           ],
           teams: {
@@ -394,53 +484,114 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
+
 .group-row {
   display: flex;
   width: 100%;
   justify-content: space-around;
+  margin-bottom: 20px;
 }
+
 .group {
   border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 20px;
+  padding: 15px;
   margin: 10px;
-  width: calc(45% - 40px);
+  width: calc(45% - 20px);
+  background-color: #fffdf5;
 }
+
 .match {
-  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
 }
+
+.teams {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+
+.team-name {
+  margin: 0 5px;
+}
+
+.separator {
+  margin: 0 5px;
+}
+
+.scores {
+  display: flex;
+  align-items: center;
+}
+
+.scores input {
+  width: 50px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.scores button {
+  background-color: #dfc99a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.scores button:hover {
+  background-color: #a57a2a;
+}
+
+.match-info {
+  font-size: 10px;
+  color: grey;
+  text-align: right;
+  width: 30%;
+}
+
 .standings {
   margin-top: 20px;
 }
+
 .standings table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .standings th,
 .standings td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
+
 .standings th {
   background-color: #f4f4f4;
 }
+
 .flag {
   width: 20px;
   height: 14px;
   margin-right: 5px;
 }
+
 .go-to-quarter-finals {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
 .go-to-quarter-finals:hover {
-  background-color: #0056b3;
+  background-color: #218838;
 }
 </style>
