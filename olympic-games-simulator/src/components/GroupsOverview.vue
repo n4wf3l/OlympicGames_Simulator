@@ -24,7 +24,13 @@
               placeholder="Score"
               min="0"
             />
-            <button @click="handleScoreSubmit(match, group)">Submit</button>
+            <button
+              @click="handleScoreSubmit(match, group)"
+              :disabled="match.scoreSubmitted"
+              :class="{ submitted: match.scoreSubmitted }"
+            >
+              Submit
+            </button>
           </div>
           <div class="match-info">
             {{ match.date }}<br />
@@ -85,7 +91,13 @@
               placeholder="Score"
               min="0"
             />
-            <button @click="handleScoreSubmit(match, group)">Submit</button>
+            <button
+              @click="handleScoreSubmit(match, group)"
+              :disabled="match.scoreSubmitted"
+              :class="{ submitted: match.scoreSubmitted }"
+            >
+              Submit
+            </button>
           </div>
           <div class="match-info">
             {{ match.date }}<br />
@@ -122,7 +134,11 @@
         </div>
       </div>
     </div>
-    <button @click="goToQuarterFinals" class="go-to-quarter-finals">
+    <button
+      @click="goToQuarterFinals"
+      class="go-to-quarter-finals"
+      :disabled="!allScoresSubmitted"
+    >
       Go to Quarter Finals
     </button>
   </div>
@@ -146,6 +162,8 @@ export default {
               date: "Wednesday 24 July",
               time: "15:00",
               venue: "Marseille",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 2,
@@ -156,6 +174,8 @@ export default {
               date: "Wednesday 24 July",
               time: "11:00",
               venue: "Nice",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 3,
@@ -166,6 +186,8 @@ export default {
               date: "Saturday 27 July",
               time: "15:00",
               venue: "Nice",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 4,
@@ -176,6 +198,8 @@ export default {
               date: "Saturday 27 July",
               time: "13:00",
               venue: "Marseille",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 5,
@@ -186,6 +210,8 @@ export default {
               date: "Tuesday 30 July",
               time: "13:00",
               venue: "Marseille",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 6,
@@ -196,6 +222,8 @@ export default {
               date: "Tuesday 30 July",
               time: "13:00",
               venue: "Saint-Étienne",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
           ],
           teams: {
@@ -218,6 +246,8 @@ export default {
               date: "Wednesday 24 July",
               time: "09:00",
               venue: "Saint-Étienne",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 2,
@@ -228,6 +258,8 @@ export default {
               date: "Wednesday 24 July",
               time: "13:00",
               venue: "Lyon",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 3,
@@ -238,6 +270,8 @@ export default {
               date: "Saturday 27 July",
               time: "09:00",
               venue: "Lyon",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 4,
@@ -248,6 +282,8 @@ export default {
               date: "Saturday 27 July",
               time: "11:00",
               venue: "Saint-Étienne",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 5,
@@ -258,6 +294,8 @@ export default {
               date: "Tuesday 30 July",
               time: "11:00",
               venue: "Lyon",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 6,
@@ -268,6 +306,8 @@ export default {
               date: "Tuesday 30 July",
               time: "11:00",
               venue: "Nice",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
           ],
           teams: {
@@ -290,6 +330,8 @@ export default {
               date: "Wednesday 24 July",
               time: "09:00",
               venue: "Paris",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 2,
@@ -300,6 +342,8 @@ export default {
               date: "Wednesday 24 July",
               time: "11:00",
               venue: "Nantes",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 3,
@@ -310,6 +354,8 @@ export default {
               date: "Saturday 27 July",
               time: "09:00",
               venue: "Bordeaux",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 4,
@@ -320,6 +366,8 @@ export default {
               date: "Saturday 27 July",
               time: "11:00",
               venue: "Nantes",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 5,
@@ -330,6 +378,8 @@ export default {
               date: "Tuesday 30 July",
               time: "09:00",
               venue: "Paris",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 6,
@@ -340,6 +390,8 @@ export default {
               date: "Tuesday 30 July",
               time: "09:00",
               venue: "Bordeaux",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
           ],
           teams: {
@@ -362,6 +414,8 @@ export default {
               date: "Wednesday 24 July",
               time: "13:00",
               venue: "Bordeaux",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 2,
@@ -372,6 +426,8 @@ export default {
               date: "Wednesday 24 July",
               time: "15:00",
               venue: "Paris",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 3,
@@ -382,6 +438,8 @@ export default {
               date: "Saturday 27 July",
               time: "13:00",
               venue: "Paris",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 4,
@@ -392,6 +450,8 @@ export default {
               date: "Saturday 27 July",
               time: "15:00",
               venue: "Bordeaux",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 5,
@@ -402,6 +462,8 @@ export default {
               date: "Tuesday 30 July",
               time: "15:00",
               venue: "Paris",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
             {
               id: 6,
@@ -412,6 +474,8 @@ export default {
               date: "Tuesday 30 July",
               time: "15:00",
               venue: "Nantes",
+              scoreSubmitted: false,
+              previousScores: { team1: 0, team2: 0 },
             },
           ],
           teams: {
@@ -424,28 +488,80 @@ export default {
       ],
     };
   },
+  computed: {
+    allScoresSubmitted() {
+      return this.groups.every((group) =>
+        group.matches.every((match) => match.scoreSubmitted)
+      );
+    },
+  },
   methods: {
     handleScoreSubmit(match, group) {
       const team1 = group.teams[match.team1];
       const team2 = group.teams[match.team2];
 
-      // Mettre à jour les buts marqués et encaissés
-      team1.goalsFor += match.team1Score;
-      team1.goalsAgainst += match.team2Score;
-      team2.goalsFor += match.team2Score;
-      team2.goalsAgainst += match.team1Score;
+      if (!match.scoreSubmitted) {
+        // Mettre à jour les buts marqués et encaissés
+        team1.goalsFor += match.team1Score;
+        team1.goalsAgainst += match.team2Score;
+        team2.goalsFor += match.team2Score;
+        team2.goalsAgainst += match.team1Score;
 
-      // Calculer les points
-      if (match.team1Score > match.team2Score) {
-        team1.points += 3;
-      } else if (match.team1Score < match.team2Score) {
-        team2.points += 3;
+        // Calculer les points
+        if (match.team1Score > match.team2Score) {
+          team1.points += 3;
+        } else if (match.team1Score < match.team2Score) {
+          team2.points += 3;
+        } else {
+          team1.points += 1;
+          team2.points += 1;
+        }
       } else {
-        team1.points += 1;
-        team2.points += 1;
+        // Retirer les scores précédents
+        team1.goalsFor -= match.previousScores.team1;
+        team1.goalsAgainst -= match.previousScores.team2;
+        team2.goalsFor -= match.previousScores.team2;
+        team2.goalsAgainst -= match.previousScores.team1;
+
+        // Retirer les points précédents
+        if (match.previousScores.team1 > match.previousScores.team2) {
+          team1.points -= 3;
+        } else if (match.previousScores.team1 < match.previousScores.team2) {
+          team2.points -= 3;
+        } else {
+          team1.points -= 1;
+          team2.points -= 1;
+        }
+
+        // Ajouter les nouveaux scores
+        team1.goalsFor += match.team1Score;
+        team1.goalsAgainst += match.team2Score;
+        team2.goalsFor += match.team2Score;
+        team2.goalsAgainst += match.team1Score;
+
+        // Ajouter les nouveaux points
+        if (match.team1Score > match.team2Score) {
+          team1.points += 3;
+        } else if (match.team1Score < match.team2Score) {
+          team2.points += 3;
+        } else {
+          team1.points += 1;
+          team2.points += 1;
+        }
       }
+
+      match.previousScores.team1 = match.team1Score;
+      match.previousScores.team2 = match.team2Score;
+      match.scoreSubmitted = true;
     },
     goToQuarterFinals() {
+      if (!this.allScoresSubmitted) {
+        alert(
+          "Please submit all scores before proceeding to the quarter finals."
+        );
+        return;
+      }
+
       const quarterFinalsData = this.groups.map((group) => {
         const teams = Object.entries(group.teams).sort(([, a], [, b]) => {
           if (a.points !== b.points) return b.points - a.points;
@@ -536,7 +652,7 @@ export default {
 }
 
 .scores button {
-  background-color: #dfc99a;
+  background-color: #8b5a2b; /* Dark brown */
   color: white;
   border: none;
   border-radius: 5px;
@@ -544,8 +660,12 @@ export default {
   cursor: pointer;
 }
 
-.scores button:hover {
-  background-color: #a57a2a;
+.scores button.submitted {
+  background-color: #dfc99a; /* Light brown */
+}
+
+.scores button:hover:not(.submitted) {
+  background-color: #a57a2a; /* Darker brown on hover */
 }
 
 .match-info {
@@ -584,14 +704,19 @@ export default {
 .go-to-quarter-finals {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: #8b5a2b; /* Dark brown */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.go-to-quarter-finals:hover {
-  background-color: #218838;
+.go-to-quarter-finals:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.go-to-quarter-finals:not(:disabled):hover {
+  background-color: #a57a2a; /* Darker brown on hover */
 }
 </style>
