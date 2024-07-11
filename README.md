@@ -1,15 +1,17 @@
-# Olympic Games 2024 Football Simulator
+# 🏅 Olympic Games 2024 Match Simulator (Paris)
 
-![Olympic Logo](./src/assets/logo.png)
+Welcome to the Olympic Games 2024 match simulator! 🥳 This project is designed to simulate the football tournament at the 2024 Summer Olympics in Paris. This simulator allows you to track the group stage matches, manage team standings, and simulate the knockout stages leading to the finals.
 
-Welcome to the Olympic Games 2024 Football Simulator! This project is designed to simulate the football tournament at the 2024 Summer Olympics in Paris. This simulator allows you to track the group stage matches, manage team standings, and simulate the knockout stages leading to the finals.
-
+## Features
+- 🔄 Real-time match simulation
+- 📊 Score and ranking tracking
+- 🌍 View groups and qualified teams
+- 📸 Screenshot capability
+  
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -23,7 +25,16 @@ The Olympic Games 2024 Football Simulator is a web application built using Vue.j
 - **Interactive User Interface**: Intuitive design for easy navigation and interaction.
 
 ## Installation
-To get a local copy of the project up and running, follow these steps:
+1. Clone the repository: `git clone https://github.com/your-username/olympic-simulator.git`
+2. Navigate to the project directory: `cd olympic-games-simulator`
+3. Install dependencies: `npm install -g @vue/cli` and `npm install vue-router`
+4. Start the application: `npm run serve`
 
 ### Prerequisites
 - Node.js and npm installed on your machine.
+
+## Contribution
+Contributions are welcome! Fork the repository, create a feature branch, commit your changes, push the branch, and open a Pull Request.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
