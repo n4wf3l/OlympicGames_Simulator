@@ -601,7 +601,6 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  font-family: "Anton SC";
   color: #6c757d;
 }
 
@@ -626,6 +625,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
+  font-family: "Anton SC";
 }
 
 .teams {
@@ -651,6 +651,7 @@ export default {
   width: 50px;
   margin: 0 5px;
   text-align: center;
+  font-family: "Anton SC";
 }
 
 .scores button {
@@ -691,6 +692,7 @@ export default {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  font-family: "Anton SC";
 }
 
 .standings th {
@@ -720,6 +722,9 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Anton SC";
+  font-size: 40px;
+  letter-spacing: 2px;
 }
 
 .go-to-quarter-finals:disabled {
