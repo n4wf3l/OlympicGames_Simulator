@@ -423,19 +423,20 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bebas+Neue&display=swap");
 
 .bracket-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Roboto", sans-serif;
-  background-color: #c2a567e7;
+  background-color: rgb(252, 250, 232);
   width: 100%;
   margin: 0%;
 }
 
 .results {
   text-align: center;
+  font-family: "Bebas Neue", sans-serif;
   margin-bottom: 20px;
 }
 
@@ -474,6 +475,7 @@ export default {
 
 .bracket {
   display: flex;
+  font-family: "Bebas Neue", sans-serif;
   justify-content: space-around;
   width: 100%;
 }

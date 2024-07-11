@@ -113,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Bebas+Neue&display=swap");
+
 .home {
   text-align: center;
   background-color: rgb(252, 250, 232);
@@ -123,15 +126,19 @@ header {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  font-family: "Bebas Neue", sans-serif;
 }
 header .logo {
   margin-bottom: 20px;
 }
 .intro {
   margin-bottom: 30px;
+  font-family: "Bebas Neue", sans-serif;
 }
 .start-button {
   background-color: #856427; /* Darker green on hover */
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
   color: white;
   border: none;
   border-radius: 5px;
@@ -149,6 +156,7 @@ header .logo {
 .info h2,
 .info h3 {
   color: #333;
+  font-family: "Bebas Neue", sans-serif;
 }
 .info ul {
   list-style-type: none;

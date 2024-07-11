@@ -26,10 +26,9 @@
             />
             <button
               @click="handleScoreSubmit(match, group)"
-              :disabled="match.scoreSubmitted"
               :class="{ submitted: match.scoreSubmitted }"
             >
-              Submit
+              {{ match.scoreSubmitted ? "Update" : "Submit" }}
             </button>
           </div>
           <div class="match-info">
@@ -93,10 +92,9 @@
             />
             <button
               @click="handleScoreSubmit(match, group)"
-              :disabled="match.scoreSubmitted"
               :class="{ submitted: match.scoreSubmitted }"
             >
-              Submit
+              {{ match.scoreSubmitted ? "Update" : "Submit" }}
             </button>
           </div>
           <div class="match-info">
@@ -516,23 +514,7 @@ export default {
       const team1 = group.teams[match.team1];
       const team2 = group.teams[match.team2];
 
-      if (!match.scoreSubmitted) {
-        // Mettre à jour les buts marqués et encaissés
-        team1.goalsFor += match.team1Score;
-        team1.goalsAgainst += match.team2Score;
-        team2.goalsFor += match.team2Score;
-        team2.goalsAgainst += match.team1Score;
-
-        // Calculer les points
-        if (match.team1Score > match.team2Score) {
-          team1.points += 3;
-        } else if (match.team1Score < match.team2Score) {
-          team2.points += 3;
-        } else {
-          team1.points += 1;
-          team2.points += 1;
-        }
-      } else {
+      if (match.scoreSubmitted) {
         // Retirer les scores précédents
         team1.goalsFor -= match.previousScores.team1;
         team1.goalsAgainst -= match.previousScores.team2;
@@ -548,22 +530,22 @@ export default {
           team1.points -= 1;
           team2.points -= 1;
         }
+      }
 
-        // Ajouter les nouveaux scores
-        team1.goalsFor += match.team1Score;
-        team1.goalsAgainst += match.team2Score;
-        team2.goalsFor += match.team2Score;
-        team2.goalsAgainst += match.team1Score;
+      // Mettre à jour les buts marqués et encaissés
+      team1.goalsFor += match.team1Score;
+      team1.goalsAgainst += match.team2Score;
+      team2.goalsFor += match.team2Score;
+      team2.goalsAgainst += match.team1Score;
 
-        // Ajouter les nouveaux points
-        if (match.team1Score > match.team2Score) {
-          team1.points += 3;
-        } else if (match.team1Score < match.team2Score) {
-          team2.points += 3;
-        } else {
-          team1.points += 1;
-          team2.points += 1;
-        }
+      // Calculer les points
+      if (match.team1Score > match.team2Score) {
+        team1.points += 3;
+      } else if (match.team1Score < match.team2Score) {
+        team2.points += 3;
+      } else {
+        team1.points += 1;
+        team2.points += 1;
       }
 
       match.previousScores.team1 = match.team1Score;
@@ -612,11 +594,15 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
+
 .groups-overview {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  font-family: "Anton SC";
+  color: #6c757d;
 }
 
 .group-row {
