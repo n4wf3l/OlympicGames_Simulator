@@ -148,12 +148,22 @@
       Go to Quarter Finals
     </button>
   </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <a href="https://nainnovations.be" target="_blank">
+        <img :src="logo" alt="NA Innovations Logo" class="footer-logo" />
+      </a>
+      <p>© 2024 NA Innovations. All rights reserved.</p>
+    </div>
+  </footer>
 </template>
 
 <script>
+import logo from "@/assets/flags/logo.png";
 export default {
   data() {
     return {
+      logo,
       groups: [
         // Group A
         {
@@ -733,5 +743,26 @@ export default {
 
 .go-to-quarter-finals:hover:enabled {
   background-color: #b17633;
+}
+
+.footer {
+  background-color: rgb(252, 250, 232);
+  color: rgb(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 50px;
+  height: auto;
+  margin-bottom: 10px;
 }
 </style>

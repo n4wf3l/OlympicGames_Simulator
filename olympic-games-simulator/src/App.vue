@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <a href="/" target="_blank">
+      <router-link to="/">
         <img src="@/assets/flags/logo.png" alt="Olympic Logo" width="50" />
-      </a>
+      </router-link>
       <h1>Football Simulator — Olympic Games 2024</h1>
     </header>
     <router-view></router-view>
