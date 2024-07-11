@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <img src="@/assets/flags/logo.png" alt="Olympic Logo" width="50" />
+      <a href="/" target="_blank">
+        <img src="@/assets/flags/logo.png" alt="Olympic Logo" width="50" />
+      </a>
       <h1>Jeux Olympiques - Équipes Qualifiées par Groupe</h1>
     </header>
     <router-view></router-view>
@@ -17,6 +19,7 @@ export default {
 <style>
 #app {
   text-align: center;
+  background-color: rgb(252, 250, 232);
 }
 header {
   display: flex;

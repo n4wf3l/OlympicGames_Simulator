@@ -35,7 +35,9 @@
             <img :src="getFlag(match.team2)" class="flag" />
             {{ match.team2 }}
             <div class="match-details">
-              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+              {{ match.venue }}
+              <br />
+              {{ match.time }} on {{ match.date }}
             </div>
             <div class="scores" v-if="!scoresSubmitted">
               <input
@@ -78,7 +80,9 @@
             <img :src="getFlag(match.team2)" class="flag" />
             {{ match.team2 }}
             <div class="match-details">
-              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+              {{ match.venue }}
+              <br />
+              {{ match.time }} on {{ match.date }}
             </div>
             <div class="scores" v-if="!scoresSubmitted">
               <input
@@ -99,8 +103,7 @@
             <button
               @click="submitScore(match, 'finals')"
               class="submit-button"
-              :disabled="!quarterFinalsSubmitted"
-              v-if="!scoresSubmitted"
+              v-if="!scoresSubmitted && quarterFinalsSubmitted"
             >
               Submit
             </button>
@@ -122,7 +125,9 @@
             <img :src="getFlag(match.team2)" class="flag" />
             {{ match.team2 }}
             <div class="match-details">
-              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+              {{ match.venue }}
+              <br />
+              {{ match.time }} on {{ match.date }}
             </div>
             <div class="scores" v-if="!scoresSubmitted">
               <input
@@ -143,8 +148,7 @@
             <button
               @click="submitScore(match, 'thirdPlaceComplete')"
               class="submit-button"
-              :disabled="!semiFinalsSubmitted"
-              v-if="!scoresSubmitted"
+              v-if="!scoresSubmitted && semiFinalsSubmitted"
             >
               Submit
             </button>
@@ -166,7 +170,9 @@
             <img :src="getFlag(match.team2)" class="flag" />
             {{ match.team2 }}
             <div class="match-details">
-              {{ match.venue }} à {{ match.time }} le {{ match.date }}
+              {{ match.venue }}
+              <br />
+              {{ match.time }} on {{ match.date }}
             </div>
             <div class="scores" v-if="!scoresSubmitted">
               <input
@@ -187,10 +193,9 @@
             <button
               @click="submitScore(match, 'complete')"
               class="submit-button"
-              :disabled="!thirdPlaceComplete"
-              v-if="!scoresSubmitted"
+              v-if="!scoresSubmitted && thirdPlaceComplete"
             >
-              Submit
+              Finalize
             </button>
             <div v-else>{{ match.team1Score }} - {{ match.team2Score }}</div>
           </div>
@@ -198,13 +203,23 @@
       </div>
     </div>
     <button id="capture-button" v-if="scoresSubmitted" @click="captureScreen">
-      Capture
+      📸 Screenshot
     </button>
+    <footer class="footer">
+      <div class="footer-content">
+        <a href="https://nainnovations.be" target="_blank">
+          <img :src="logo" alt="NA Innovations Logo" class="footer-logo" />
+        </a>
+        <p>© 2024 NA Innovations. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
 import html2canvas from "html2canvas";
+import logo from "@/assets/logo.png"; // Update this path to your actual logo path
+import logonai from "@/assets/logonai.png"; // Update this path to your actual logo path
 
 export default {
   data() {
@@ -218,7 +233,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Paris",
           time: "15h",
-          date: "2 août 2024",
+          date: "2 August 2024",
         },
         {
           team1: "",
@@ -228,7 +243,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Lyon",
           time: "17h",
-          date: "2 août 2024",
+          date: "2 August 2024",
         },
         {
           team1: "",
@@ -238,7 +253,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Marseille",
           time: "19h",
-          date: "2 août 2024",
+          date: "2 August 2024",
         },
         {
           team1: "",
@@ -248,7 +263,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Bordeaux",
           time: "21h",
-          date: "2 août 2024",
+          date: "2 August 2024",
         },
       ],
       semiFinals: [
@@ -260,7 +275,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Marseille",
           time: "15h",
-          date: "5 août 2024",
+          date: "5 August 2024",
         },
         {
           team1: "",
@@ -270,7 +285,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Lyon",
           time: "17h",
-          date: "5 août 2024",
+          date: "5 August 2024",
         },
       ],
       finals: [
@@ -282,7 +297,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Paris",
           time: "18h",
-          date: "9 août 2024",
+          date: "9 August 2024",
         },
       ],
       thirdPlace: [
@@ -294,7 +309,7 @@ export default {
           selectedWinner: "",
           venue: "📍 Nantes",
           time: "17h",
-          date: "8 août 2024",
+          date: "8 August 2024",
         },
       ],
       thirdPlaceComplete: false,
@@ -304,6 +319,8 @@ export default {
       quarterFinalsSubmitted: false,
       semiFinalsSubmitted: false,
       scoresSubmitted: false,
+      logo: logo,
+      logonai: logonai,
     };
   },
   created() {
@@ -321,7 +338,7 @@ export default {
     submitScore(match, nextStage) {
       if (match.team1Score === match.team2Score) {
         if (match.selectedWinner === "") {
-          alert("Match nul! Sélectionnez un vainqueur.");
+          alert("It's a tie! Please select a winner.");
           return;
         }
         match.winner = match.selectedWinner;
@@ -385,11 +402,14 @@ export default {
     captureScreen() {
       const captureElement = document.getElementById("capture-section");
       const captureButton = document.getElementById("capture-button");
+      const footerElement = document.querySelector(".footer");
 
       captureButton.style.display = "none"; // Hide the button before capture
+      footerElement.style.display = "none"; // Hide the footer before capture
 
       html2canvas(captureElement).then((canvas) => {
         captureButton.style.display = "block"; // Show the button again after capture
+        footerElement.style.display = "block"; // Show the footer again after capture
 
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
@@ -409,7 +429,7 @@ export default {
   flex-direction: column;
   align-items: center;
   font-family: "Roboto", sans-serif;
-  background-color: #e6d8bce7;
+  background-color: #c2a567e7;
   width: 100%;
   margin: 0%;
 }
@@ -495,9 +515,50 @@ export default {
 
 .submit-button {
   margin-top: 5px;
+  background-color: #e0d598; /* Green background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.submit-button:hover {
+  background-color: #856427; /* Darker green on hover */
 }
 
 #capture-button {
   margin-top: 20px;
+  background-color: #f2f8ff; /* Blue background */
+  color: rgb(177, 132, 48); /* White text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+#capture-button:hover {
+  background-color: #dbd4c1; /* Darker blue on hover */
+}
+
+.footer {
+  background-color: rgb(252, 250, 232);
+  color: rgb(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 50px;
+  height: auto;
+  margin-bottom: 10px;
 }
 </style>
