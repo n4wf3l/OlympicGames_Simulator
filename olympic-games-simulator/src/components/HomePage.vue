@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <header></header>
+    <div class="hr-container2">
+      <hr class="custom-hr2" />
+    </div>
     <section class="intro">
       <p>Welcome to the Football Simulator for the 2024 Olympic Games!</p>
       <router-link to="/groupsoverview">
@@ -16,8 +19,8 @@
         >
       </p>
     </div>
-    <div class="hr-container">
-      <hr class="custom-hr" />
+    <div class="hr-container2">
+      <hr class="custom-hr2" />
     </div>
     <section class="info">
       <h2>About the Olympic Games</h2>
@@ -208,17 +211,18 @@ header {
 }
 
 .intro {
+  margin-top: 5%;
   margin-bottom: 30px;
   font-family: "Bebas Neue", sans-serif;
 }
 
 .screenshottext {
-  margin-bottom: 80px;
   margin: 0 auto;
   max-width: 800px;
+  margin-bottom: 5%;
 }
 .start-button {
-  background-color: #856427; /* Darker green on hover */
+  background-color: #d3c88f; /* Darker green on hover */
   font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 1px;
@@ -233,44 +237,20 @@ header {
 }
 
 /* Container pour centrer le hr */
-.hr-container {
+.hr-container2 {
   width: 100%;
-  display: flex;
   justify-content: center;
 }
 
 /* Styles pour le hr personnalisé */
-.custom-hr {
-  width: 0;
+.custom-hr2 {
+  width: 50%;
   height: 2px;
   background: #000;
   border: none;
-  animation: hr-animation 3s infinite;
 }
 
 /* Animation keyframes */
-@keyframes hr-animation {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  25% {
-    width: 50%;
-    opacity: 1;
-  }
-  50% {
-    width: 100%;
-    opacity: 1;
-  }
-  75% {
-    width: 50%;
-    opacity: 1;
-  }
-  100% {
-    width: 0;
-    opacity: 0;
-  }
-}
 
 .info {
   text-align: left;

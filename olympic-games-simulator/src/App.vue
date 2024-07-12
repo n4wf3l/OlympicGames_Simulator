@@ -13,6 +13,11 @@
           </h2>
         </em>
         <h1 class="title">Football Simulator</h1>
+
+        <div class="hr-container">
+          <hr class="custom-hr" />
+          ⚽
+        </div>
       </div>
     </header>
     <router-view></router-view>
@@ -68,6 +73,46 @@ header img {
   flex-direction: column;
   align-items: center;
   margin-left: 5px;
+}
+
+/* Container pour centrer le hr */
+.hr-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styles pour le hr personnalisé */
+.custom-hr {
+  width: 0;
+  height: 2px;
+  background: #d3c88f;
+  border: none;
+  animation: hr-animation 3s infinite;
+}
+
+/* Animation keyframes */
+@keyframes hr-animation {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  25% {
+    width: 50%;
+    opacity: 1;
+  }
+  50% {
+    width: 100%;
+    opacity: 1;
+  }
+  75% {
+    width: 50%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
 }
 
 .title {
