@@ -2,9 +2,18 @@
   <div id="app">
     <header>
       <router-link to="/">
-        <img src="@/assets/flags/logo.png" alt="Olympic Logo" width="50" />
+        <img src="@/assets/flags/logo.png" alt="Olympic Logo" class="logo" />
       </router-link>
-      <h1><em>Football Simulator — Olympic Games 2024</em></h1>
+      <div class="text-container">
+        <em>
+          <h2 class="subtitle">
+            Olympic <span class="games">G</span><span class="games">A</span
+            ><span class="games">M</span><span class="games">E</span
+            ><span class="games">S</span> 2024
+          </h2>
+        </em>
+        <h1 class="title">Football Simulator</h1>
+      </div>
     </header>
     <router-view></router-view>
   </div>
@@ -49,10 +58,62 @@ header img {
   margin-right: 20px;
 }
 
+.logo {
+  width: 100px !important; /* Ajustez la taille du logo si nécessaire */
+  margin: 10px 0 !important; /* Ajuster la marge pour mieux espacer */
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.title {
+  font-size: 2em !important;
+  margin-top: 10px !important;
+}
+
+.subtitle {
+  font-size: 1.5em !important;
+  margin-bottom: 1px !important; /* Ajout d'une marge inférieure */
+}
+
+.games {
+  display: inline-block !important;
+}
+
+.games:nth-child(1) {
+  color: #0085c7 !important; /* Bleu */
+}
+
+.games:nth-child(2) {
+  color: #f4c300 !important; /* Jaune */
+}
+
+.games:nth-child(3) {
+  color: #000000 !important; /* Noir */
+}
+
+.games:nth-child(4) {
+  color: #009f3d !important; /* Vert */
+}
+
+.games:nth-child(5) {
+  color: #df0024 !important; /* Rouge */
+}
+
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  .text-container {
+    align-items: center !important;
+  }
+  .logo {
+    margin-bottom: 10px !important;
   }
 
   header img {

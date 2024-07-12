@@ -1,26 +1,24 @@
 <template>
   <div class="home">
-    <header>
-      <img
-        src="@/assets/flags/logo.png"
-        alt="Olympic Logo"
-        class="logo"
-        width="10%"
-      />
-    </header>
+    <header></header>
     <section class="intro">
       <p>Welcome to the Football Simulator for the 2024 Olympic Games!</p>
       <router-link to="/groupsoverview">
         <button class="start-button">🚀 Start Simulation</button>
       </router-link>
     </section>
-    <p>
-      <em
-        >If taking a screenshot of the simulator table on mobile, use Chrome,
-        Safari, or another browser instead of opening the site via an app like
-        LinkedIn, X, or Facebook.</em
-      >
-    </p>
+    <div class="screenshottext">
+      <p>
+        <em
+          >If taking a screenshot of the simulator table on mobile, use Chrome,
+          Safari, or another browser instead of opening the site via an app like
+          LinkedIn, X, or Facebook.</em
+        >
+      </p>
+    </div>
+    <div class="hr-container">
+      <hr class="custom-hr" />
+    </div>
     <section class="info">
       <h2>About the Olympic Games</h2>
       <p>
@@ -208,17 +206,16 @@ header {
   margin-bottom: 20px;
   font-family: "Bebas Neue", sans-serif;
 }
-header .logo {
-  width: 200px;
-}
-@media (max-width: 768px) {
-  header .logo {
-    width: 150px;
-  }
-}
+
 .intro {
   margin-bottom: 30px;
   font-family: "Bebas Neue", sans-serif;
+}
+
+.screenshottext {
+  margin-bottom: 80px;
+  margin: 0 auto;
+  max-width: 800px;
 }
 .start-button {
   background-color: #856427; /* Darker green on hover */
@@ -234,6 +231,47 @@ header .logo {
 .start-button:hover {
   background-color: #694d19; /* Darker green on hover */
 }
+
+/* Container pour centrer le hr */
+.hr-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styles pour le hr personnalisé */
+.custom-hr {
+  width: 0;
+  height: 2px;
+  background: #000;
+  border: none;
+  animation: hr-animation 3s infinite;
+}
+
+/* Animation keyframes */
+@keyframes hr-animation {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  25% {
+    width: 50%;
+    opacity: 1;
+  }
+  50% {
+    width: 100%;
+    opacity: 1;
+  }
+  75% {
+    width: 50%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
 .info {
   text-align: left;
   margin: 0 auto;

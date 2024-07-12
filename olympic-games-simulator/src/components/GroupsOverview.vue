@@ -596,12 +596,6 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Anton SC", sans-serif;
   color: #6c757d;
