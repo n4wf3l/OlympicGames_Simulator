@@ -404,7 +404,6 @@ export default {
       const captureButton = document.getElementById("capture-button");
       const footerElement = document.querySelector(".footer");
 
-      // Ajouter la classe .force-desktop
       captureElement.classList.add("force-desktop");
 
       captureButton.style.display = "none"; // Hide the button before capture
@@ -414,7 +413,6 @@ export default {
         captureButton.style.display = "block"; // Show the button again after capture
         footerElement.style.display = "block"; // Show the footer again after capture
 
-        // Supprimer la classe .force-desktop
         captureElement.classList.remove("force-desktop");
 
         const link = document.createElement("a");

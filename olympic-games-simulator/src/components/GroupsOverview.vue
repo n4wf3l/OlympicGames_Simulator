@@ -779,42 +779,47 @@ body {
   }
 
   .group {
-    width: 90%; /* Ajustez cette valeur si nécessaire */
+    width: 90%;
   }
 
   .match {
-    flex-direction: column; /* Aligner les éléments verticalement en mobile */
+    flex-direction: column;
   }
 
   .teams {
-    width: 100%; /* Faire en sorte que l'élément prenne toute la largeur */
-    justify-content: center; /* Centrer le contenu horizontalement */
+    width: 100%;
+    justify-content: center;
   }
 
   .scores {
-    width: 100%; /* Faire en sorte que l'élément prenne toute la largeur */
-    justify-content: center; /* Centrer le contenu horizontalement */
+    width: 100%;
+    justify-content: center;
   }
 
   .scores input {
-    width: 45px; /* Ajustez cette valeur si nécessaire pour la taille des inputs */
-    margin: 5px; /* Espace entre les inputs */
+    width: 45px;
+    margin: 5px;
   }
 
   .scores button {
-    width: auto; /* Assurez-vous que le bouton ne prenne pas toute la largeur */
+    width: auto;
   }
 
   .match-info {
     width: 100%;
-    text-align: center; /* Centrer le texte */
+    text-align: center;
     margin-top: 10px;
   }
 
   .standings {
-    width: calc(100% - 2px); /* Prendre toute la largeur moins 2 pixels */
+    width: calc(100% - 2px);
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .go-to-quarter-finals {
+    font-size: 20px;
+    padding: 10px 15px;
   }
 }
 </style>

@@ -186,11 +186,11 @@ header {
   font-family: "Bebas Neue", sans-serif;
 }
 header .logo {
-  width: 200px; /* Taille par défaut pour les écrans plus grands */
+  width: 200px;
 }
 @media (max-width: 768px) {
   header .logo {
-    width: 150px; /* Taille réduite pour les écrans plus petits */
+    width: 150px;
   }
 }
 .intro {
@@ -268,7 +268,7 @@ header .logo {
 
 @media (max-width: 768px) {
   .key-dates-table {
-    width: 100%; /* S'assure que le tableau prend toute la largeur sur les petits écrans */
+    width: 100%;
   }
 }
 
