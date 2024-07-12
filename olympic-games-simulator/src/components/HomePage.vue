@@ -11,7 +11,7 @@
     <section class="intro">
       <p>Welcome to the Football Simulator for the 2024 Olympic Games!</p>
       <router-link to="/groupsoverview">
-        <button class="start-button">Start Simulation</button>
+        <button class="start-button">🚀 Start Simulation</button>
       </router-link>
     </section>
     <section class="info">
@@ -186,7 +186,12 @@ header {
   font-family: "Bebas Neue", sans-serif;
 }
 header .logo {
-  margin-bottom: 20px;
+  width: 200px; /* Taille par défaut pour les écrans plus grands */
+}
+@media (max-width: 768px) {
+  header .logo {
+    width: 150px; /* Taille réduite pour les écrans plus petits */
+  }
 }
 .intro {
   margin-bottom: 30px;
