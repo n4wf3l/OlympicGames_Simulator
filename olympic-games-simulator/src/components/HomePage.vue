@@ -7,7 +7,6 @@
         class="logo"
         width="10%"
       />
-      <h1>Olympic Games 2024 — Football Simulator</h1>
     </header>
     <section class="intro">
       <p>Welcome to the Football Simulator for the 2024 Olympic Games!</p>
