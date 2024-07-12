@@ -202,8 +202,12 @@
         </div>
       </div>
     </div>
+    <p v-if="scoresSubmitted" class="info-message">
+      ❗️ Please use a browser like Google Chrome or Safari to use the
+      screenshot-button, and not an application like X, Facebook or LinkedIn.
+    </p>
     <button id="capture-button" v-if="scoresSubmitted" @click="captureScreen">
-      📸 Screenshot
+      📸 Take a Screenshot
     </button>
     <footer class="footer">
       <div class="footer-content">
@@ -408,13 +412,19 @@ export default {
       const captureElement = document.getElementById("capture-section");
       const captureButton = document.getElementById("capture-button");
       const footerElement = document.querySelector(".footer");
+      const infoMessageElement = document.querySelector(".info-message");
 
       captureElement.classList.add("force-desktop");
-
+      if (infoMessageElement) {
+        infoMessageElement.classList.add("hidden"); // Hide the info message
+      }
       captureButton.style.display = "none"; // Hide the button before capture
       footerElement.style.display = "none"; // Hide the footer before capture
 
       html2canvas(captureElement).then((canvas) => {
+        if (infoMessageElement) {
+          infoMessageElement.classList.remove("hidden"); // Show the info message again after capture
+        }
         captureButton.style.display = "block"; // Show the button again after capture
         footerElement.style.display = "block"; // Show the footer again after capture
 
@@ -451,6 +461,18 @@ export default {
   background-color: rgb(252, 250, 232);
   width: 100%;
   margin: 0%;
+}
+
+.hidden {
+  display: none;
+}
+
+.info-message {
+  font-size: 14px;
+  color: #020202;
+  font-family: "Bebas Neue", sans-serif;
+  margin: 20px 10px;
+  text-align: center;
 }
 
 .results {
@@ -553,11 +575,15 @@ export default {
 #capture-button {
   margin-top: 20px;
   background-color: #f2f8ff; /* Blue background */
-  color: rgb(177, 132, 48); /* White text */
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(17, 14, 10); /* White text */
   border: none; /* Remove border */
   border-radius: 5px; /* Rounded corners */
   padding: 10px 20px; /* Padding */
   cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 #capture-button:hover {
