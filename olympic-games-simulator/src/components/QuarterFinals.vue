@@ -400,6 +400,11 @@ export default {
       }
     },
     captureScreen() {
+      if (this.isWebView()) {
+        alert("Please use a browser to take a screenshot.");
+        return;
+      }
+
       const captureElement = document.getElementById("capture-section");
       const captureButton = document.getElementById("capture-button");
       const footerElement = document.querySelector(".footer");
@@ -420,6 +425,16 @@ export default {
         link.download = "bracket.png";
         link.click();
       });
+    },
+
+    isWebView() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      return (
+        /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(userAgent) ||
+        /\bwv\b/.test(userAgent) ||
+        /Android.*Version\/[\d.]+/.test(userAgent) ||
+        /FBAN|FBAV|FB_IAB|FB4A|FBAN/.test(userAgent)
+      );
     },
   },
 };
