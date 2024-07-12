@@ -200,6 +200,7 @@ header .logo {
 .start-button {
   background-color: #856427; /* Darker green on hover */
   font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
   letter-spacing: 1px;
   color: white;
   border: none;
