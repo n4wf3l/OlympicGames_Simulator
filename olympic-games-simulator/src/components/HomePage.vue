@@ -14,6 +14,13 @@
         <button class="start-button">🚀 Start Simulation</button>
       </router-link>
     </section>
+    <p>
+      <em
+        >If taking a screenshot of the simulator table on mobile, use Chrome,
+        Safari, or another browser instead of opening the site via an app like
+        LinkedIn, X, or Facebook.</em
+      >
+    </p>
     <section class="info">
       <h2>About the Olympic Games</h2>
       <p>
