@@ -231,6 +231,9 @@ header .logo {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .key-dates-table th,
@@ -261,6 +264,12 @@ header .logo {
 .key-dates-table td:first-child {
   font-weight: bold;
   color: #333;
+}
+
+@media (max-width: 768px) {
+  .key-dates-table {
+    width: 100%; /* S'assure que le tableau prend toute la largeur sur les petits écrans */
+  }
 }
 
 .footer {
