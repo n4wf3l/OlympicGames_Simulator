@@ -773,6 +773,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .groups-overview {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
   .group {
     width: 90%; /* Ajustez cette valeur si nécessaire */
   }
@@ -804,6 +809,12 @@ body {
     width: 100%;
     text-align: center; /* Centrer le texte */
     margin-top: 10px;
+  }
+
+  .standings {
+    width: calc(100% - 2px); /* Prendre toute la largeur moins 2 pixels */
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 </style>
