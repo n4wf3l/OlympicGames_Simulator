@@ -475,6 +475,8 @@ export default {
   width: 20px;
   height: auto;
   margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .bracket {

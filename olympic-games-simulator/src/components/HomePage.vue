@@ -53,6 +53,16 @@
         two teams from each group advance to the knockout stage.
       </p>
 
+      <p>
+        If all teams in a group stage draw all their matches, they will have the
+        same points, goal difference, and goals scored. The tiebreakers then
+        used are typically the teams' fair-play record (fewest yellow/red
+        cards). If the fair-play records are also identical, a drawing of lots
+        (random selection) is conducted to decide which team advances. This
+        process ensures a clear and fair method to break ties when performance
+        metrics are identical.
+      </p>
+
       <h3>Knockout Stage</h3>
       <p>
         The knockout stage includes the quarter-finals, semi-finals, and the
@@ -61,7 +71,13 @@
         the semi-finals, and the winners of the semi-finals move on to the final
         match to compete for the gold medal.
       </p>
-
+      <p>
+        In the knockout stages, if a match is tied at the end of regular time,
+        it goes into extra time consisting of two 15-minute halves. If the score
+        is still tied after extra time, the match is decided by a penalty
+        shootout. This process determines the winner in a fair and decisive
+        manner.
+      </p>
       <h3>Historical Context</h3>
       <p>
         Football has been a significant part of the modern Olympic Games since

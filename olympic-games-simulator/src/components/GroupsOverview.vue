@@ -718,6 +718,8 @@ body {
   width: 20px;
   height: 14px;
   margin-right: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .quarter-finals-info {
